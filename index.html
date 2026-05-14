@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calman Caldeiraria</title>
+  <meta name="description" content="Calman Caldeiraria e Manutenção Industrial – Especialistas em caldeiraria, fabricação de estruturas metálicas, silos e manutenção industrial em Santa Cruz de Minas, MG. Atendemos mineração, siderurgia, cimenteira e metalurgia.">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="pt-BR">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Calman Caldeiraria">
+  <meta property="og:description" content="Calman Caldeiraria e Manutenção Industrial – Especialistas em caldeiraria, fabricação de estruturas metálicas, silos e manutenção industrial em Santa Cruz de Minas, MG.">
+  <meta property="og:image" content="1778591540617_logomarca_2_.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="1778591540617_logomarca_2_.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    /* ─── VARIÁVEIS ──────────────────────────────────────────── */
+    :root {
+      --green:        #1a6b3a;
+      --green-dark:   #0f4325;
+      --green-mid:    #25924f;
+      --green-light:  #e8f5ee;
+      --gray:         #4a5a6a;
+      --gray-dark:    #2c3440;
+      --gray-mid:     #5a6a7a;
+      --gray-light:   #6b7a8d;
+      --white:        #ffffff;
+      --off-white:    #f6f8f7;
+      --border:       #dde5e0;
+      --shadow-sm:    0 1px 3px rgba(0,0,0,.09), 0 1px 2px rgba(0,0,0,.06);
+      --shadow-md:    0 4px 8px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.05);
+      --shadow-lg:    0 12px 20px rgba(0,0,0,.1),  0 4px 8px rgba(0,0,0,.06);
+      --radius:       8px;
+      --radius-lg:    16px;
+      --font-head:    'Montserrat', sans-serif;
+      --font-body:    'Open Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--gray-dark);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5 { font-family: var(--font-head); line-height: 1.2; font-weight: 700; }
+    h1 { font-size: clamp(2rem, 5vw, 3.4rem); }
+    h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); }
+    h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
+
+    p { line-height: 1.75; color: var(--gray); }
+    a { text-decoration: none; color: inherit; transition: color .2s; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* ─── UTILITÁRIOS ────────────────────────────────────────── */
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem; }
+    .section-pad { padding: 5rem 0; }
+
+    .tag {
+      display: inline-block;
+      background: var(--green-light);
+      color: var(--green);
+      font-family: var(--font-head);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .35rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+
+    .sec-header { text-align: center; max-width: 680px; margin: 0 auto 3.5rem; }
+    .sec-header h2 { color: var(--gray-dark); margin-bottom: .875rem; }
+    .sec-header p  { font-size: 1.02rem; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .75rem 1.75rem;
+      border-radius: var(--radius);
+      font-family: var(--font-head);
+      font-weight: 600;
+      font-size: .92rem;
+      border: 2px solid transparent;
+      transition: all .25s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--white);
+      border-color: var(--green);
+    }
+    .btn-primary:hover {
+      background: var(--green-dark);
+      border-color: var(--green-dark);
+      color: var(--white);
+    }
+
+    .btn-outline-white {
+      background: rgba(255,255,255,.1);
+      color: var(--white);
+      border-color: rgba(255,255,255,.55);
+    }
+    .btn-outline-white:hover {
+      background: var(--white);
+      color: var(--green);
+      border-color: var(--white);
+    }
+
+    /* ─── HEADER ─────────────────────────────────────────────── */
+    #header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow .3s;
+    }
+    #header.scrolled { box-shadow: var(--shadow-md); }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .8rem 1.5rem;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .logo-wrap img {
+      height: 50px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    .logo-text { font-family: var(--font-head); }
+    .logo-text strong {
+      display: block;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+    }
+    .logo-text span {
+      font-size: .7rem;
+      font-weight: 500;
+      color: var(--gray-light);
+      letter-spacing: .04em;
+    }
+
+    nav ul { display: flex; align-items: center; gap: .2rem; list-style: none; }
+    nav ul li a {
+      display: block;
+      padding: .45rem .85rem;
+      font-family: var(--font-head);
+      font-size: .84rem;
+      font-weight: 600;
+      color: var(--gray-dark);
+      border-radius: 6px;
+      transition: all .2s;
+    }
+    nav ul li a:hover { color: var(--green); background: var(--green-light); }
+    .nav-cta a {
+      background: var(--green) !important;
+      color: var(--white) !important;
+      padding: .5rem 1.2rem !important;
+    }
+    .nav-cta a:hover { background: var(--green-dark) !important; }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: .5rem;
+      font-size: 1.4rem;
+      color: var(--gray-dark);
+    }
+
+    @media (max-width: 780px) {
+      .menu-btn { display: block; }
+      nav {
+        position: fixed;
+        top: 0; right: -100%;
+        width: 80%; max-width: 300px; height: 100dvh;
+        background: var(--white);
+        box-shadow: var(--shadow-lg);
+        padding: 5rem 2rem 2rem;
+        transition: right .3s;
+        z-index: 999;
+      }
+      nav.open { right: 0; }
+      nav ul { flex-direction: column; align-items: flex-start; gap: .2rem; }
+      nav ul li { width: 100%; }
+      nav ul li a { width: 100%; font-size: .95rem; padding: .7rem 1rem; }
+    }
+
+    .overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.45);
+      z-index: 998;
+    }
+    .overlay.on { display: block; }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--green-dark);
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        145deg,
+        rgba(8,30,17,.97) 0%,
+        rgba(15,67,37,.93) 50%,
+        rgba(8,30,17,.97) 100%
+      );
+    }
+
+    /* Grade industrial decorativa */
+    .hero-grid {
+      position: absolute; inset: 0;
+      opacity: .03;
+      background-image:
+        linear-gradient(rgba(255,255,255,1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+
+    .hero-bar {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 5px;
+      background: linear-gradient(to bottom, var(--green-mid), var(--green));
+    }
+
+    .hero-circle {
+      position: absolute;
+      right: -15%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 55vw;
+      height: 55vw;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.03);
+      background: radial-gradient(circle, rgba(37,146,79,.08) 0%, transparent 70%);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      color: var(--white);
+      padding: 7rem 0 5rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      color: #5ddb96;
+      font-family: var(--font-head);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .35rem .9rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-inner h1 { color: var(--white); max-width: 680px; margin-bottom: 1.25rem; }
+    .hero-inner h1 em { color: #5ddb96; font-style: normal; }
+
+    .hero-sub {
+      font-family: var(--font-body);
+      font-size: clamp(.95rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,.7);
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .hero-stats {
+      position: relative; z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-top: 4.5rem;
+      background: rgba(255,255,255,.07);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .stat {
+      padding: 1.5rem;
+      text-align: center;
+      background: rgba(0,0,0,.15);
+    }
+
+    .stat-num {
+      display: block;
+      font-family: var(--font-head);
+      font-size: 2rem;
+      font-weight: 800;
+      color: #5ddb96;
+    }
+
+    .stat-label {
+      font-size: .78rem;
+      color: rgba(255,255,255,.55);
+      margin-top: .2rem;
+    }
+
+    @media (max-width: 500px) {
+      .stat { padding: 1.1rem .5rem; }
+      .stat-num { font-size: 1.5rem; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { width: 100%; justify-content: center; }
+    }
+
+    /* ─── SOBRE ──────────────────────────────────────────────── */
+    #sobre { background: var(--white); }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    @media (max-width: 880px) {
+      .sobre-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    .sobre-card {
+      background: var(--green);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .sobre-card::before {
+      content: '';
+      position: absolute;
+      top: -30px; right: -30px;
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.05);
+    }
+    .sobre-card::after {
+      content: '';
+      position: absolute;
+      bottom: -20px; left: -20px;
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.04);
+    }
+
+    .sobre-card-icon {
+      width: 54px; height: 54px;
+      background: rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      color: #5ddb96;
+      margin-bottom: 1.25rem;
+    }
+
+    .sobre-card h3 { color: var(--white); margin-bottom: .6rem; }
+    .sobre-card p  { color: rgba(255,255,255,.8); font-size: .95rem; }
+
+    .mini-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .875rem;
+      margin-top: .875rem;
+    }
+
+    .mini-card {
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+    }
+    .mini-card i { font-size: 1.2rem; color: var(--green); margin-bottom: .4rem; display: block; }
+    .mini-card h4 {
+      font-family: var(--font-head);
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--gray-dark);
+      margin-bottom: .2rem;
+    }
+    .mini-card p { font-size: .78rem; color: var(--gray-light); }
+
+    .sobre-text h2 { color: var(--gray-dark); margin-bottom: 1.1rem; }
+    .sobre-text p { margin-bottom: 1.2rem; font-size: .97rem; }
+
+    .mvv { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; margin-top: 1.5rem; }
+    @media (max-width: 640px) { .mvv { grid-template-columns: 1fr; } }
+
+    .mvv-card {
+      background: var(--off-white);
+      border-left: 4px solid var(--green);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1.4rem;
+    }
+    .mvv-card i { font-size: 1.3rem; color: var(--green); margin-bottom: .6rem; display: block; }
+    .mvv-card h3 {
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--gray-mid);
+      margin-bottom: .4rem;
+    }
+    .mvv-card p { font-size: .82rem; color: var(--gray); }
+
+    /* ─── MERCADO ────────────────────────────────────────────── */
+    #mercado { background: var(--green-dark); }
+
+    #mercado .sec-header h2 { color: var(--white); }
+    #mercado .sec-header p  { color: rgba(255,255,255,.65); }
+    #mercado .tag { background: rgba(255,255,255,.08); color: #5ddb96; }
+
+    .setores {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .setor {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.25rem;
+      text-align: center;
+      transition: all .3s;
+    }
+    .setor:hover {
+      background: rgba(255,255,255,.09);
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,.12);
+    }
+    .setor-ico {
+      width: 60px; height: 60px;
+      background: rgba(93,219,150,.12);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto .9rem;
+      font-size: 1.4rem;
+      color: #5ddb96;
+    }
+    .setor h3 { color: var(--white); font-size: .95rem; font-weight: 600; }
+
+    /* ─── SERVIÇOS ───────────────────────────────────────────── */
+    #servicos { background: var(--off-white); }
+
+    .servicos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .serv-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: all .3s;
+    }
+    .serv-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+
+    .serv-head {
+      background: var(--green);
+      padding: 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: .875rem;
+    }
+    .serv-ico {
+      width: 50px; height: 50px;
+      background: rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .serv-head h3 { color: var(--white); font-size: 1.05rem; }
+
+    .serv-body { padding: 1.75rem; }
+    .serv-body p { font-size: .92rem; margin-bottom: 1.1rem; }
+
+    .serv-list { list-style: none; display: flex; flex-direction: column; gap: .45rem; }
+    .serv-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+      font-size: .85rem;
+      color: var(--gray);
+    }
+    .serv-list li::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green-mid);
+      margin-top: .44rem;
+      flex-shrink: 0;
+    }
+
+    /* ─── PRODUTOS ───────────────────────────────────────────── */
+    #produtos { background: var(--white); }
+
+    .produtos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .prod-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: all .3s;
+    }
+    .prod-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+
+    .prod-visual {
+      height: 150px;
+      background: linear-gradient(135deg, var(--green), var(--green-mid));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: rgba(255,255,255,.75);
+      position: relative;
+      overflow: hidden;
+    }
+    .prod-visual::after {
+      content: '';
+      position: absolute;
+      bottom: -20px; right: -20px;
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.05);
+    }
+
+    .prod-info { padding: 1.4rem; background: var(--white); }
+    .prod-info h3 { color: var(--gray-dark); margin-bottom: .4rem; font-size: 1rem; }
+    .prod-info p  { font-size: .85rem; color: var(--gray); }
+
+    /* ─── DEPOIMENTOS ────────────────────────────────────────── */
+    #depoimentos { background: var(--off-white); }
+
+    .depoi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .depoi-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+    .depoi-card::before {
+      content: '\201C';
+      font-family: Georgia, serif;
+      font-size: 5rem;
+      line-height: 1;
+      color: var(--green-light);
+      position: absolute;
+      top: .4rem; left: 1.25rem;
+    }
+
+    .stars {
+      display: flex;
+      gap: .2rem;
+      color: #f59e0b;
+      margin-bottom: .875rem;
+      font-size: .82rem;
+    }
+
+    .depoi-text {
+      font-size: .93rem;
+      font-style: italic;
+      color: var(--gray);
+      margin-bottom: 1.4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .depoi-autor { display: flex; align-items: center; gap: .7rem; }
+
+    .avatar {
+      width: 40px; height: 40px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white);
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: .82rem;
+      flex-shrink: 0;
+    }
+
+    .autor-info .nome  { font-family: var(--font-head); font-size: .85rem; font-weight: 600; color: var(--gray-dark); }
+    .autor-info .cargo { font-size: .78rem; color: var(--gray-light); }
+
+    /* ─── CONTATO ────────────────────────────────────────────── */
+    #contato { background: var(--white); }
+
+    .contato-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    @media (max-width: 880px) { .contato-grid { grid-template-columns: 1fr; } }
+
+    .contato-info { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .info-item { display: flex; gap: .875rem; align-items: flex-start; }
+
+    .info-ico {
+      width: 46px; height: 46px;
+      background: var(--green-light);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.05rem;
+      color: var(--green);
+      flex-shrink: 0;
+    }
+
+    .info-item h3 {
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--gray-light);
+      margin-bottom: .2rem;
+    }
+    .info-item p, .info-item a {
+      font-size: .92rem;
+      color: var(--gray-dark);
+      font-weight: 500;
+    }
+    .info-item a:hover { color: var(--green); }
+
+    .horario-rows { display: flex; flex-direction: column; gap: .2rem; }
+    .hor-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: .85rem;
+      color: var(--gray);
+    }
+    .hor-row span:last-child { font-weight: 600; color: var(--gray-dark); }
+
+    .social-list { display: flex; gap: .625rem; margin-top: .25rem; }
+    .soc-btn {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .95rem;
+      color: var(--gray);
+      transition: all .2s;
+    }
+    .soc-btn:hover {
+      border-color: var(--green);
+      color: var(--green);
+      background: var(--green-light);
+    }
+
+    .mapa {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+    }
+    .mapa iframe { width: 100%; height: 450px; border: none; display: block; }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: var(--gray-dark);
+      color: var(--white);
+      padding: 3.5rem 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 720px) { .footer-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+    .footer-logo {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+      font-size: .85rem;
+      color: rgba(255,255,255,.45);
+      max-width: 280px;
+      margin-bottom: 1.1rem;
+    }
+
+    .footer-soc { display: flex; gap: .5rem; }
+    .footer-soc-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .9rem;
+      color: rgba(255,255,255,.45);
+      transition: all .2s;
+    }
+    .footer-soc-btn:hover {
+      border-color: #5ddb96;
+      color: #5ddb96;
+    }
+
+    .footer-title {
+      font-family: var(--font-head);
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: #5ddb96;
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+    .footer-links a {
+      font-size: .85rem;
+      color: rgba(255,255,255,.5);
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .6rem;
+      font-size: .85rem;
+      color: rgba(255,255,255,.5);
+      margin-bottom: .7rem;
+    }
+    .footer-contact-item i { color: #5ddb96; margin-top: .1rem; flex-shrink: 0; }
+    .footer-contact-item a { color: rgba(255,255,255,.5); }
+    .footer-contact-item a:hover { color: var(--white); }
+
+    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,.07); margin-bottom: 1.75rem; }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: .78rem;
+      color: rgba(255,255,255,.3);
+    }
+
+    /* ─── WHATSAPP FLUTUANTE ─────────────────────────────────── */
+    .wa-float {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      z-index: 990;
+    }
+    .wa-float a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 54px; height: 54px;
+      background: #25D366;
+      color: var(--white);
+      border-radius: 50%;
+      font-size: 1.45rem;
+      box-shadow: 0 4px 14px rgba(37,211,102,.4);
+      transition: background .2s;
+    }
+    .wa-float a:hover { background: #1db954; color: var(--white); }
+
+    /* ─── RESPONSIVIDADE GERAL ───────────────────────────────── */
+    @media (max-width: 580px) {
+      .section-pad { padding: 3.5rem 0; }
+      .servicos-grid, .produtos-grid, .depoi-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Overlay do menu mobile -->
+  <div class="overlay" id="overlay" onclick="fecharMenu()"></div>
+
+  <!-- ═══ HEADER ═════════════════════════════════════════════ -->
+  <header id="header">
+    <div class="header-inner">
+      <a href="#hero" class="logo-wrap" aria-label="Calman Caldeiraria – página inicial">
+        <img src="1778591540617_logomarca_2_.jpg" alt="Logotipo da Calman Caldeiraria e Manutenção Industrial">
+        <div class="logo-text">
+          <strong>Calman Caldeiraria</strong>
+          <span>Manutenção Industrial</span>
+        </div>
+      </a>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menu de navegação" onclick="alternarMenu()">
+        <i class="fas fa-bars" id="menuIco"></i>
+      </button>
+
+      <nav id="mainNav" aria-label="Menu principal">
+        <ul>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#mercado">Mercado</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#produtos">Produtos</a></li>
+          <li><a href="#depoimentos">Depoimentos</a></li>
+          <li class="nav-cta"><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ═══ HERO ════════════════════════════════════════════════ -->
+  <section id="hero" aria-labelledby="hero-titulo">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-bar"  aria-hidden="true"></div>
+    <div class="hero-circle" aria-hidden="true"></div>
+
+    <div class="container hero-inner">
+      <div class="hero-badge" aria-hidden="true">
+        <i class="fas fa-industry"></i>
+        Desde 2014 · Santa Cruz de Minas, MG
+      </div>
+
+      <h1 id="hero-titulo">
+        Calman <em>Caldeiraria</em>
+      </h1>
+
+      <h2 class="hero-sub">
+        Soluções especializadas em caldeiraria, fabricação metal mecânica e manutenção industrial com excelência, segurança e precisão técnica.
+      </h2>
+
+      <div class="hero-actions">
+        <!-- ATENÇÃO: substitua 5532999999999 pelo número real de WhatsApp -->
+        <a href="https://wa.me/5532999999999" class="btn btn-primary">
+          <i class="fab fa-whatsapp"></i>
+          Solicitar orçamento
+        </a>
+        <a href="#servicos" class="btn btn-outline-white">
+          Nossos serviços
+        </a>
+      </div>
+
+      <div class="hero-stats" aria-label="Destaques da empresa">
+        <div class="stat">
+          <span class="stat-num">+10</span>
+          <span class="stat-label">Anos de experiência</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">600 m²</span>
+          <span class="stat-label">Oficina moderna</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Foco em qualidade</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SOBRE ════════════════════════════════════════════════ -->
+  <section id="sobre" class="section-pad" aria-labelledby="sobre-titulo">
+    <div class="container">
+      <div class="sobre-grid">
+
+        <!-- Visual -->
+        <div>
+          <div class="sobre-card">
+            <div class="sobre-card-icon" aria-hidden="true">
+              <i class="fas fa-hard-hat"></i>
+            </div>
+            <h3>Fundada em 2014</h3>
+            <p>Oficina moderna de 600&nbsp;m² em Santa Cruz de Minas, MG, atendendo São João del Rei e toda a região com excelência e precisão técnica.</p>
+          </div>
+
+          <div class="mini-cards">
+            <div class="mini-card">
+              <i class="fas fa-shield-alt" aria-hidden="true"></i>
+              <h4>Segurança</h4>
+              <p>Padrões rigorosos em todos os projetos</p>
+            </div>
+            <div class="mini-card">
+              <i class="fas fa-medal" aria-hidden="true"></i>
+              <h4>Qualidade</h4>
+              <p>Alta precisão técnica em cada entrega</p>
+            </div>
+            <div class="mini-card">
+              <i class="fas fa-handshake" aria-hidden="true"></i>
+              <h4>Ética</h4>
+              <p>Integridade e profissionalismo como pilares</p>
+            </div>
+            <div class="mini-card">
+              <i class="fas fa-cogs" aria-hidden="true"></i>
+              <h4>Tecnologia</h4>
+              <p>Equipamentos modernos e mão de obra qualificada</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Texto -->
+        <div class="sobre-text">
+          <span class="tag">Sobre nós</span>
+          <h2 id="sobre-titulo">Excelência e tradição na indústria metal mecânica</h2>
+          <p>Fundada em 2014 para atender São João del Rei e região, a Calman Caldeiraria e Manutenção Industrial possui hoje uma oficina moderna de 600&nbsp;m² em Santa Cruz de Minas, MG.</p>
+          <p>A empresa oferece soluções especializadas para os segmentos industrial, de construção e metal mecânica, entregando projetos de alta precisão e qualidade técnica.</p>
+          <p>Somos especialistas em transformar projetos complexos em realidade operacional. Com foco em infraestrutura industrial, combinamos tecnologia de ponta, mão de obra qualificada e rigorosos padrões de segurança.</p>
+
+          <div class="mvv" aria-label="Missão, visão e valores">
+            <div class="mvv-card">
+              <i class="fas fa-bullseye" aria-hidden="true"></i>
+              <h3>Missão</h3>
+              <p>Fornecer soluções inteligentes e personalizadas para a fabricação metal mecânica e manutenção industrial com ética e profissionalismo.</p>
+            </div>
+            <div class="mvv-card">
+              <i class="fas fa-eye" aria-hidden="true"></i>
+              <h3>Visão</h3>
+              <p>Ser referência empresarial no setor de soluções para indústria, manutenção e equipamentos, com foco em qualidade e segurança.</p>
+            </div>
+            <div class="mvv-card">
+              <i class="fas fa-heart" aria-hidden="true"></i>
+              <h3>Valores</h3>
+              <p>Respeito, responsabilidade, segurança, qualidade e integridade em cada projeto e em cada relação com clientes e colaboradores.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MERCADO ══════════════════════════════════════════════ -->
+  <section id="mercado" class="section-pad" aria-labelledby="mercado-titulo">
+    <div class="container">
+      <div class="sec-header">
+        <span class="tag">Mercado de atuação</span>
+        <h2 id="mercado-titulo">Setores que atendemos</h2>
+        <p>Especializados em atender os segmentos mais exigentes da indústria, com soluções sob medida para cada necessidade operacional.</p>
+      </div>
+
+      <div class="setores">
+        <div class="setor">
+          <div class="setor-ico" aria-hidden="true"><i class="fas fa-gem"></i></div>
+          <h3>Mineração</h3>
+        </div>
+        <div class="setor">
+          <div class="setor-ico" aria-hidden="true"><i class="fas fa-fire"></i></div>
+          <h3>Siderurgia</h3>
+        </div>
+        <div class="setor">
+          <div class="setor-ico" aria-hidden="true"><i class="fas fa-industry"></i></div>
+          <h3>Cimenteira</h3>
+        </div>
+        <div class="setor">
+          <div class="setor-ico" aria-hidden="true"><i class="fas fa-cog"></i></div>
+          <h3>Metalurgia</h3>
+        </div>
+        <div class="setor">
+          <div class="setor-ico" aria-hidden="true"><i class="fas fa-building"></i></div>
+          <h3>Construção industrial</h3>
+        </div>
+        <div class="setor">
+          <div class="setor-ico" aria-hidden="true"><i class="fas fa-wrench"></i></div>
+          <h3>Manutenção geral</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SERVIÇOS ═════════════════════════════════════════════ -->
+  <section id="servicos" class="section-pad" aria-labelledby="servicos-titulo">
+    <div class="container">
+      <div class="sec-header">
+        <span class="tag">Nossos serviços</span>
+        <h2 id="servicos-titulo">Soluções completas para a sua indústria</h2>
+        <p>Especializados em maximizar a disponibilidade de ativos e minimizar paradas não planejadas, com estratégias preventivas e corretivas.</p>
+      </div>
+
+      <div class="servicos-grid">
+        <article class="serv-card">
+          <div class="serv-head">
+            <div class="serv-ico" aria-hidden="true"><i class="fas fa-tools"></i></div>
+            <h3>Manutenção industrial</h3>
+          </div>
+          <div class="serv-body">
+            <p>Especializados em estratégias de manutenção preventiva e corretiva, focados em maximizar a disponibilidade dos seus ativos industriais.</p>
+            <ul class="serv-list">
+              <li>Manutenção preventiva planejada</li>
+              <li>Manutenção corretiva de emergência</li>
+              <li>Inspeção e diagnóstico de equipamentos</li>
+              <li>Minimização de paradas não planejadas</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="serv-card">
+          <div class="serv-head">
+            <div class="serv-ico" aria-hidden="true"><i class="fas fa-recycle"></i></div>
+            <h3>Restauração de ativos</h3>
+          </div>
+          <div class="serv-body">
+            <p>Recuperamos a eficiência do que já existe. Nosso serviço de restauração estende a vida útil de equipamentos com desgaste severo.</p>
+            <ul class="serv-list">
+              <li>Recuperação de integridade estrutural</li>
+              <li>Restauração da capacidade operacional</li>
+              <li>Tratamento de desgaste severo</li>
+              <li>Extensão da vida útil de equipamentos</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="serv-card">
+          <div class="serv-head">
+            <div class="serv-ico" aria-hidden="true"><i class="fas fa-fire-alt"></i></div>
+            <h3>Caldeiraria especializada</h3>
+          </div>
+          <div class="serv-body">
+            <p>Serviços especializados de caldeiraria com alta precisão técnica, atendendo os setores mais exigentes da indústria nacional.</p>
+            <ul class="serv-list">
+              <li>Fabricação de caldeiras e vasos de pressão</li>
+              <li>Soldagem especializada</li>
+              <li>Conformação de chapas e perfis</li>
+              <li>Projetos sob especificação técnica</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PRODUTOS ════════════════════════════════════════════ -->
+  <section id="produtos" class="section-pad" aria-labelledby="produtos-titulo">
+    <div class="container">
+      <div class="sec-header">
+        <span class="tag">O que fabricamos</span>
+        <h2 id="produtos-titulo">Produtos fabricados sob medida</h2>
+        <p>Fabricação de estruturas e equipamentos metálicos com alta precisão, qualidade técnica e atenção total às especificações do cliente.</p>
+      </div>
+
+      <div class="produtos-grid">
+        <article class="prod-card">
+          <div class="prod-visual" aria-hidden="true"><i class="fas fa-database"></i></div>
+          <div class="prod-info">
+            <h3>Silos metálicos</h3>
+            <p>Fabricação de silos para armazenamento industrial com alta durabilidade e precisão dimensional.</p>
+          </div>
+        </article>
+
+        <article class="prod-card">
+          <div class="prod-visual" aria-hidden="true"><i class="fas fa-th-large"></i></div>
+          <div class="prod-info">
+            <h3>Estruturas metálicas</h3>
+            <p>Desenvolvimento e fabricação de estruturas metálicas sob medida para os mais diversos projetos industriais.</p>
+          </div>
+        </article>
+
+        <article class="prod-card">
+          <div class="prod-visual" aria-hidden="true"><i class="fas fa-box"></i></div>
+          <div class="prod-info">
+            <h3>Galões e reservatórios</h3>
+            <p>Fabricação de galões e reservatórios metálicos com precisão técnica e acabamento de alta qualidade.</p>
+          </div>
+        </article>
+
+        <article class="prod-card">
+          <div class="prod-visual" aria-hidden="true"><i class="fas fa-home"></i></div>
+          <div class="prod-info">
+            <h3>Telhados metálicos</h3>
+            <p>Fabricação e montagem de telhados e coberturas metálicas para instalações industriais e comerciais.</p>
+          </div>
+        </article>
+
+        <article class="prod-card">
+          <div class="prod-visual" aria-hidden="true"><i class="fas fa-cog"></i></div>
+          <div class="prod-info">
+            <h3>Peças industriais</h3>
+            <p>Fabricação de peças e componentes para os setores de mineração, siderurgia, cimenteira e metalurgia.</p>
+          </div>
+        </article>
+
+        <article class="prod-card">
+          <div class="prod-visual" aria-hidden="true"><i class="fas fa-drafting-compass"></i></div>
+          <div class="prod-info">
+            <h3>Projetos especiais</h3>
+            <p>Desenvolvimento de projetos personalizados conforme especificações técnicas e necessidades de cada cliente.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DEPOIMENTOS ══════════════════════════════════════════ -->
+  <section id="depoimentos" class="section-pad" aria-labelledby="depoi-titulo">
+    <div class="container">
+      <div class="sec-header">
+        <span class="tag">Depoimentos</span>
+        <h2 id="depoi-titulo">O que dizem nossos clientes</h2>
+        <p>A satisfação dos nossos clientes é o nosso maior indicador de qualidade e excelência.</p>
+      </div>
+
+      <div class="depoi-grid">
+        <article class="depoi-card">
+          <div class="stars" aria-label="Avaliação 5 de 5 estrelas">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="depoi-text">Ótimo atendimento. A equipe da Calman demonstrou profissionalismo e comprometimento em todo o processo do projeto.</p>
+          <div class="depoi-autor">
+            <div class="avatar" aria-hidden="true">C</div>
+            <div class="autor-info">
+              <div class="nome">Cliente</div>
+              <div class="cargo">Setor industrial</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="depoi-card">
+          <div class="stars" aria-label="Avaliação 5 de 5 estrelas">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="depoi-text">Empresa fantástica com ótimos profissionais. Recomendo sem hesitar para qualquer projeto de manutenção industrial.</p>
+          <div class="depoi-autor">
+            <div class="avatar" aria-hidden="true">E</div>
+            <div class="autor-info">
+              <div class="nome">Empresa parceira</div>
+              <div class="cargo">Manutenção industrial</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="depoi-card">
+          <div class="stars" aria-label="Avaliação 5 de 5 estrelas">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="depoi-text">Eficiência em manutenção industrial. Os prazos são cumpridos e a qualidade dos serviços supera as expectativas.</p>
+          <div class="depoi-autor">
+            <div class="avatar" aria-hidden="true">P</div>
+            <div class="autor-info">
+              <div class="nome">Parceiro comercial</div>
+              <div class="cargo">Setor de mineração</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTATO ══════════════════════════════════════════════ -->
+  <section id="contato" class="section-pad" aria-labelledby="contato-titulo">
+    <div class="container">
+      <div class="sec-header">
+        <span class="tag">Entre em contato</span>
+        <h2 id="contato-titulo">Fale conosco</h2>
+        <p>Estamos prontos para atender o seu projeto e oferecer a melhor solução em caldeiraria e manutenção industrial.</p>
+      </div>
+
+      <div class="contato-grid">
+        <!-- Informações -->
+        <div class="contato-info">
+          <div class="info-item">
+            <div class="info-ico" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <h3>Endereço</h3>
+              <p>Av. Min. Gabriel Passos, 92<br>Centro – Santa Cruz de Minas, MG<br>CEP 36328-000</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-ico" aria-hidden="true"><i class="fas fa-envelope"></i></div>
+            <div>
+              <h3>E-mail</h3>
+              <a href="mailto:calmansjdr@gmail.com">calmansjdr@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-ico" aria-hidden="true"><i class="fab fa-whatsapp"></i></div>
+            <div>
+              <h3>WhatsApp</h3>
+              <!-- ATENÇÃO: substitua 5532999999999 pelo número real de WhatsApp -->
+              <a href="https://wa.me/5532999999999">Enviar mensagem pelo WhatsApp</a>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-ico" aria-hidden="true"><i class="fas fa-clock"></i></div>
+            <div>
+              <h3>Horário de funcionamento</h3>
+              <div class="horario-rows">
+                <div class="hor-row">
+                  <span>Segunda a quinta</span>
+                  <span>7h às 17h</span>
+                </div>
+                <div class="hor-row">
+                  <span>Sexta-feira</span>
+                  <span>7h às 16h</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-ico" aria-hidden="true"><i class="fas fa-share-alt"></i></div>
+            <div>
+              <h3>Redes sociais</h3>
+              <div class="social-list">
+                <a href="https://www.instagram.com/calman_caldeiraria/" target="_blank" rel="noopener noreferrer" class="soc-btn" aria-label="Instagram da Calman Caldeiraria">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <!-- ATENÇÃO: substitua 5532999999999 pelo número real de WhatsApp -->
+                <a href="https://wa.me/5532999999999" class="soc-btn" aria-label="WhatsApp da Calman Caldeiraria">
+                  <i class="fab fa-whatsapp"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ATENÇÃO: substitua 5532999999999 pelo número real de WhatsApp -->
+          <a href="https://wa.me/5532999999999" class="btn btn-primary" style="align-self:flex-start;">
+            <i class="fab fa-whatsapp"></i>
+            Solicitar orçamento pelo WhatsApp
+          </a>
+        </div>
+
+        <!-- Mapa -->
+        <div class="mapa">
+          <iframe
+            src="https://maps.google.com/maps?q=Av.+Min.+Gabriel+Passos,+92,+Centro,+Santa+Cruz+de+Minas,+MG,+36328-000&z=16&output=embed"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Localização da Calman Caldeiraria em Santa Cruz de Minas, MG"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ══════════════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Marca -->
+        <div class="footer-brand">
+          <img src="1778591540617_logomarca_2_.jpg" alt="Logotipo Calman Caldeiraria" class="footer-logo">
+          <p>Especialistas em caldeiraria, fabricação metal mecânica e manutenção industrial desde 2014. Qualidade, segurança e excelência em cada projeto.</p>
+          <div class="footer-soc">
+            <a href="https://www.instagram.com/calman_caldeiraria/" target="_blank" rel="noopener noreferrer" class="footer-soc-btn" aria-label="Instagram da Calman Caldeiraria">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <!-- ATENÇÃO: substitua 5532999999999 pelo número real de WhatsApp -->
+            <a href="https://wa.me/5532999999999" class="footer-soc-btn" aria-label="WhatsApp da Calman Caldeiraria">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Links -->
+        <div>
+          <div class="footer-title">Navegação</div>
+          <ul class="footer-links">
+            <li><a href="#sobre">Sobre nós</a></li>
+            <li><a href="#mercado">Mercado de atuação</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#produtos">Produtos</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </div>
+
+        <!-- Contato -->
+        <div>
+          <div class="footer-title">Contato</div>
+          <div class="footer-contact-item">
+            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+            <span>Av. Min. Gabriel Passos, 92, Centro – Santa Cruz de Minas, MG</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+            <a href="mailto:calmansjdr@gmail.com">calmansjdr@gmail.com</a>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            <span>Seg–Qui: 7h–17h&nbsp;&nbsp;|&nbsp;&nbsp;Sex: 7h–16h</span>
+          </div>
+        </div>
+      </div>
+
+      <hr class="footer-divider">
+
+      <div class="footer-bottom">
+        <span>&copy; 2024 Calman Caldeiraria. Todos os direitos reservados.</span>
+        <span>CNPJ: 20.538.691/0001-99</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══ WHATSAPP FLUTUANTE ══════════════════════════════════ -->
+  <div class="wa-float">
+    <!-- ATENÇÃO: substitua 5532999999999 pelo número real de WhatsApp -->
+    <a href="https://wa.me/5532999999999" target="_blank" rel="noopener noreferrer" aria-label="Falar com a Calman Caldeiraria pelo WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Rodapé MonteSite - Atualização Automática -->
+  <div id="root"></div>
+  <div id="montesite-footer-badge"></div>
+  <script src="https://vaabpicspdbolvutnscp.supabase.co/functions/v1/get-footer-iframe"></script>
+
+  <script>
+    // Efeito de scroll no header
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Menu mobile
+    function alternarMenu() {
+      const nav = document.getElementById('mainNav');
+      const overlay = document.getElementById('overlay');
+      const ico = document.getElementById('menuIco');
+      const aberto = nav.classList.toggle('open');
+      overlay.classList.toggle('on', aberto);
+      ico.className = aberto ? 'fas fa-times' : 'fas fa-bars';
+      document.getElementById('menuBtn').setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu de navegação');
+    }
+
+    function fecharMenu() {
+      const nav = document.getElementById('mainNav');
+      const overlay = document.getElementById('overlay');
+      const ico = document.getElementById('menuIco');
+      nav.classList.remove('open');
+      overlay.classList.remove('on');
+      ico.className = 'fas fa-bars';
+      document.getElementById('menuBtn').setAttribute('aria-label', 'Abrir menu de navegação');
+    }
+
+    // Fechar menu ao clicar em um link
+    document.querySelectorAll('#mainNav a').forEach(link => {
+      link.addEventListener('click', fecharMenu);
+    });
+  </script>
+</body>
+</html>
