@@ -16,7 +16,7 @@
   <meta property="og:locale" content="pt_BR">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/jpeg" href="1778591540617_logomarca_2_.jpg">
+  <link rel="icon" type="image/jpeg" href="midias/favicon.jpeg">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -153,7 +153,7 @@
       gap: .75rem;
     }
     .logo-wrap img {
-      height: 50px;
+      height: 52px;
       width: auto;
       object-fit: contain;
       border-radius: 4px;
@@ -235,7 +235,9 @@
       min-height: 100vh;
       display: flex;
       align-items: center;
-      background: var(--green-dark);
+      background-image: url('midias/hero.jpg');
+      background-size: cover;
+      background-position: center;
       overflow: hidden;
     }
 
@@ -243,9 +245,9 @@
       position: absolute; inset: 0;
       background: linear-gradient(
         145deg,
-        rgba(8,30,17,.97) 0%,
-        rgba(15,67,37,.93) 50%,
-        rgba(8,30,17,.97) 100%
+        rgba(8,30,17,.70) 0%,
+        rgba(15,67,37,.58) 50%,
+        rgba(8,30,17,.70) 100%
       );
     }
 
@@ -282,7 +284,7 @@
       position: relative;
       z-index: 2;
       color: var(--white);
-      padding: 7rem 0 5rem;
+      padding: 7rem 1.5rem 5rem;
     }
 
     .hero-badge {
@@ -314,7 +316,7 @@
       line-height: 1.75;
     }
 
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
     .hero-stats {
       position: relative; z-index: 2;
@@ -350,8 +352,8 @@
     @media (max-width: 500px) {
       .stat { padding: 1.1rem .5rem; }
       .stat-num { font-size: 1.5rem; }
-      .hero-actions { flex-direction: column; }
-      .hero-actions .btn { width: 100%; justify-content: center; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .hero-actions .btn { width: auto; min-width: 220px; justify-content: center; }
     }
 
     /* ─── SOBRE ──────────────────────────────────────────────── */
@@ -453,7 +455,11 @@
     .mvv-card p { font-size: .82rem; color: var(--gray); }
 
     /* ─── MERCADO ────────────────────────────────────────────── */
-    #mercado { background: var(--green-dark); }
+    #mercado {
+      background:
+        linear-gradient(rgba(8,30,17,.87), rgba(8,30,17,.87)),
+        url('midias/cemrecan-yurtman-enPxH6uqABg-unsplash.jpg') center/cover no-repeat;
+    }
 
     #mercado .sec-header h2 { color: var(--white); }
     #mercado .sec-header p  { color: rgba(255,255,255,.65); }
@@ -461,8 +467,11 @@
 
     .setores {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.25rem;
+    }
+    @media (max-width: 640px) {
+      .setores { grid-template-columns: repeat(2, 1fr); }
     }
 
     .setor {
@@ -490,7 +499,14 @@
     .setor h3 { color: var(--white); font-size: .95rem; font-weight: 600; }
 
     /* ─── SERVIÇOS ───────────────────────────────────────────── */
-    #servicos { background: var(--off-white); }
+    #servicos {
+      background:
+        linear-gradient(rgba(15,25,20,.91), rgba(15,25,20,.91)),
+        url('midias/jakub-skafiriak-AljDaiCbCVY-unsplash.jpg') center/cover no-repeat;
+    }
+    #servicos .sec-header h2 { color: var(--white); }
+    #servicos .sec-header p  { color: rgba(255,255,255,.65); }
+    #servicos .tag { background: rgba(255,255,255,.08); color: #5ddb96; }
 
     .servicos-grid {
       display: grid;
@@ -499,9 +515,11 @@
     }
 
     .serv-card {
-      background: var(--white);
+      background: rgba(255,255,255,.13);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255,255,255,.15);
       box-shadow: var(--shadow-sm);
       overflow: hidden;
       transition: all .3s;
@@ -527,7 +545,7 @@
     .serv-head h3 { color: var(--white); font-size: 1.05rem; }
 
     .serv-body { padding: 1.75rem; }
-    .serv-body p { font-size: .92rem; margin-bottom: 1.1rem; }
+    .serv-body p { font-size: .92rem; margin-bottom: 1.1rem; color: rgba(255,255,255,.75); }
 
     .serv-list { list-style: none; display: flex; flex-direction: column; gap: .45rem; }
     .serv-list li {
@@ -535,7 +553,7 @@
       align-items: flex-start;
       gap: .5rem;
       font-size: .85rem;
-      color: var(--gray);
+      color: rgba(255,255,255,.65);
     }
     .serv-list li::before {
       content: '';
@@ -547,7 +565,15 @@
     }
 
     /* ─── PRODUTOS ───────────────────────────────────────────── */
-    #produtos { background: var(--white); }
+    #produtos {
+      background:
+        linear-gradient(rgba(15,25,20,.90), rgba(15,25,20,.90)),
+        url('midias/karan-bhatia-ib7jwp7m0iA-unsplash.jpg') center/cover no-repeat;
+    }
+    #produtos .sec-header h2 { color: var(--white); }
+    #produtos .sec-header p  { color: rgba(255,255,255,.65); }
+    #produtos .tag { background: rgba(255,255,255,.08); color: #5ddb96; }
+    #produtos .prod-card { border-color: rgba(255,255,255,.15); }
 
     .produtos-grid {
       display: grid;
@@ -556,8 +582,11 @@
     }
 
     .prod-card {
+      background: rgba(255,255,255,.10);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255,255,255,.15);
       box-shadow: var(--shadow-sm);
       overflow: hidden;
       transition: all .3s;
@@ -584,9 +613,9 @@
       background: rgba(255,255,255,.05);
     }
 
-    .prod-info { padding: 1.4rem; background: var(--white); }
-    .prod-info h3 { color: var(--gray-dark); margin-bottom: .4rem; font-size: 1rem; }
-    .prod-info p  { font-size: .85rem; color: var(--gray); }
+    .prod-info { padding: 1.4rem; background: transparent; }
+    .prod-info h3 { color: var(--white); margin-bottom: .4rem; font-size: 1rem; }
+    .prod-info p  { font-size: .85rem; color: rgba(255,255,255,.65); }
 
     /* ─── DEPOIMENTOS ────────────────────────────────────────── */
     #depoimentos { background: var(--off-white); }
@@ -604,7 +633,10 @@
       border: 1px solid var(--border);
       box-shadow: var(--shadow-sm);
       position: relative;
+      display: flex;
+      flex-direction: column;
     }
+    .depoi-card .depoi-autor { margin-top: auto; }
     .depoi-card::before {
       content: '\201C';
       font-family: Georgia, serif;
@@ -834,6 +866,306 @@
       .section-pad { padding: 3.5rem 0; }
       .servicos-grid, .produtos-grid, .depoi-grid { grid-template-columns: 1fr; }
     }
+
+    /* ─── SOBRE FOTO ─────────────────────────────────────────── */
+    .sobre-foto {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: .875rem;
+    }
+    .sobre-foto > img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s;
+    }
+    .sobre-foto:hover > img { transform: scale(1.03); }
+    .sobre-foto-badge {
+      position: absolute;
+      bottom: 1rem; left: 1rem;
+      background: rgba(255,255,255,.95);
+      border-radius: var(--radius);
+      padding: .7rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      box-shadow: var(--shadow-md);
+    }
+    .sobre-badge-logo {
+      height: 36px; width: 36px;
+      object-fit: contain;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+    .sobre-foto-badge strong {
+      display: block;
+      font-family: var(--font-head);
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--gray-dark);
+      line-height: 1.3;
+    }
+    .sobre-foto-badge span {
+      font-size: .73rem;
+      color: var(--gray-light);
+    }
+
+    /* ─── GALERIA ────────────────────────────────────────────── */
+    #galeria { background: var(--off-white); }
+
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 640px) {
+      .galeria-grid { grid-template-columns: 1fr; }
+    }
+
+    .galeria-item {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      aspect-ratio: 16/9;
+    }
+    .galeria-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .45s;
+    }
+    .galeria-item:hover img { transform: scale(1.05); }
+    .galeria-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 2.5rem 1.25rem 1rem;
+      background: linear-gradient(transparent, rgba(0,0,0,.62));
+      color: var(--white);
+      font-family: var(--font-head);
+      font-size: .88rem;
+      font-weight: 600;
+    }
+
+    /* ─── CAPACIDADE TÉCNICA ─────────────────────────────── */
+    #capacidade { background: var(--off-white); }
+
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 780px) { .cap-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .cap-grid { grid-template-columns: 1fr; } }
+
+    .cap-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .cap-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+
+    .cap-ico {
+      width: 52px; height: 52px;
+      background: var(--green-light);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      color: var(--green);
+    }
+
+    .cap-card h3 {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gray-dark);
+    }
+
+    .cap-card p { font-size: .88rem; color: var(--gray); }
+
+    .cap-badge {
+      display: inline-block;
+      background: var(--green);
+      color: var(--white);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .28rem .75rem;
+      border-radius: 100px;
+      align-self: flex-start;
+      margin-top: auto;
+    }
+
+    /* ─── CTA BANNER ─────────────────────────────────────── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+      padding: 4rem 0;
+    }
+
+    .cta-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .cta-text h2 {
+      color: var(--white);
+      margin-bottom: .5rem;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+    }
+    .cta-text p { color: rgba(255,255,255,.75); font-size: .97rem; }
+
+    @media (max-width: 640px) {
+      .cta-inner { flex-direction: column; text-align: center; }
+    }
+
+    /* ─── MULTI-CARD CAROUSEL ───────────────────────────── */
+    .dep-carousel {
+      position: relative;
+      width: 100%;
+      padding: .75rem 0 .5rem;
+    }
+
+    .dep-carr-outer {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .dep-carr-track {
+      display: flex;
+      gap: 1.25rem;
+      padding: .5rem 1.5rem 1rem;
+      transition: transform .5s cubic-bezier(.4,0,.2,1);
+      will-change: transform;
+      cursor: grab;
+      user-select: none;
+    }
+    .dep-carr-track:active { cursor: grabbing; }
+
+    .dep-carr-slide {
+      flex: 0 0 calc((100% - 4 * 1.25rem - 3rem) / 5);
+    }
+
+    @media (max-width: 860px) {
+      .dep-carr-slide { flex: 0 0 calc((100% - 2 * 1.25rem - 3rem) / 3); }
+    }
+    @media (max-width: 520px) {
+      .dep-carr-slide { flex: 0 0 calc((100% - 1.25rem - 2rem) / 2); }
+      .dep-carr-track { padding: .5rem 1rem 1rem; }
+    }
+
+    .dep-carousel .depoi-card {
+      padding: 1.5rem 1.5rem 1.25rem;
+      box-shadow: var(--shadow-md);
+      height: 100%;
+    }
+    .dep-carousel .depoi-card::before { font-size: 3.5rem; }
+
+    /* Setas */
+    .dep-carr-arrow {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      z-index: 10;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,.18);
+      color: var(--gray-dark);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-size: .9rem;
+      transition: all .2s;
+    }
+    .dep-carr-arrow:hover {
+      background: var(--green);
+      color: var(--white);
+      box-shadow: 0 4px 14px rgba(26,107,58,.4);
+    }
+    .dep-carr-prev { left: .35rem; }
+    .dep-carr-next { right: .35rem; }
+
+    .carr-dots {
+      display: flex;
+      gap: .5rem;
+      justify-content: center;
+      margin-top: 1.25rem;
+    }
+
+    .carr-dot {
+      width: 8px; height: 8px;
+      border-radius: 100px;
+      background: var(--border);
+      border: none;
+      cursor: pointer;
+      transition: all .3s;
+      padding: 0;
+    }
+    .carr-dot.active { background: var(--green); width: 24px; }
+
+    /* ─── GOOGLE REVIEWS ─────────────────────────────────── */
+    .google-callout {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      box-shadow: var(--shadow-sm);
+      margin-top: 3rem;
+      flex-wrap: wrap;
+      text-decoration: none;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .google-callout:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+    .google-stars { display: flex; gap: .2rem; color: #f59e0b; font-size: 1rem; margin-bottom: .35rem; }
+
+    .google-callout-text strong {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gray-dark);
+      display: block;
+      margin-bottom: .15rem;
+    }
+    .google-callout-text p { font-size: .85rem; color: var(--gray); }
+
+    .google-cta {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: var(--font-head);
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--green);
+      white-space: nowrap;
+    }
+    .google-cta i { font-size: 1rem; }
+
+    @media (max-width: 580px) {
+      .google-callout { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .google-cta { margin-left: 0; }
+    }
+
+    /* ─── MERCADO – grid 4 colunas ───────────────────────── */
+    @media (min-width: 641px) {
+      .setores { grid-template-columns: repeat(4, 1fr); }
+    }
   </style>
 </head>
 <body>
@@ -845,11 +1177,7 @@
   <header id="header">
     <div class="header-inner">
       <a href="#hero" class="logo-wrap" aria-label="Calman Caldeiraria – página inicial">
-        <img src="1778591540617_logomarca_2_.jpg" alt="Logotipo da Calman Caldeiraria e Manutenção Industrial">
-        <div class="logo-text">
-          <strong>Calman Caldeiraria</strong>
-          <span>Manutenção Industrial</span>
-        </div>
+        <img src="midias/favicon.jpeg" alt="Logotipo da Calman Caldeiraria e Manutenção Industrial">
       </a>
 
       <button class="menu-btn" id="menuBtn" aria-label="Abrir menu de navegação" onclick="alternarMenu()">
@@ -858,7 +1186,10 @@
 
       <nav id="mainNav" aria-label="Menu principal">
         <ul>
+          <li><a href="#hero">Início</a></li>
           <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#capacidade">Capacidade</a></li>
           <li><a href="#mercado">Mercado</a></li>
           <li><a href="#servicos">Serviços</a></li>
           <li><a href="#produtos">Produtos</a></li>
@@ -891,8 +1222,7 @@
       </h2>
 
       <div class="hero-actions">
-        <!-- ATENÇÃO: substitua 5532999999999 pelo número real de WhatsApp -->
-        <a href="https://wa.me/5532999999999" class="btn btn-primary">
+        <a href="https://wa.me/553233734979" class="btn btn-primary">
           <i class="fab fa-whatsapp"></i>
           Solicitar orçamento
         </a>
@@ -911,8 +1241,8 @@
           <span class="stat-label">Oficina moderna</span>
         </div>
         <div class="stat">
-          <span class="stat-num">100%</span>
-          <span class="stat-label">Foco em qualidade</span>
+          <span class="stat-num">16</span>
+          <span class="stat-label">Avaliações no Google</span>
         </div>
       </div>
     </div>
@@ -926,9 +1256,7 @@
         <!-- Visual -->
         <div>
           <div class="sobre-card">
-            <div class="sobre-card-icon" aria-hidden="true">
-              <i class="fas fa-hard-hat"></i>
-            </div>
+            <img src="midias/1778591540617_logomarca_2_.jpg" alt="Logo Calman Caldeiraria" style="height:100px;width:auto;object-fit:contain;border-radius:8px;margin:0 auto 1.5rem;display:block;">
             <h3>Fundada em 2014</h3>
             <p>Oficina moderna de 600&nbsp;m² em Santa Cruz de Minas, MG, atendendo São João del Rei e toda a região com excelência e precisão técnica.</p>
           </div>
@@ -987,6 +1315,147 @@
     </div>
   </section>
 
+  <!-- ═══ GALERIA ════════════════════════════════════════════ -->
+  <section id="galeria" class="section-pad" aria-labelledby="galeria-titulo">
+    <div class="container">
+      <div class="sec-header">
+        <span class="tag">Nossos projetos</span>
+        <h2 id="galeria-titulo">Frota própria e trabalhos em campo</h2>
+        <p>Caminhão munck próprio para içamento, transporte e montagem de estruturas metálicas — agilidade e segurança em cada projeto.</p>
+      </div>
+
+      <div class="galeria-grid">
+        <div class="galeria-item">
+          <img src="midias/869790199482911.jpeg" alt="Caminhão munck Calman em operação em planta industrial de grande porte" loading="lazy">
+          <div class="galeria-caption">Operação em planta industrial</div>
+        </div>
+        <div class="galeria-item">
+          <img src="midias/4170171406627612.jpeg" alt="Içamento de estruturas metálicas próximo a represa" loading="lazy">
+          <div class="galeria-caption">Içamento de estruturas em área aquática</div>
+        </div>
+        <div class="galeria-item">
+          <img src="midias/4352466251738360.jpeg" alt="Transporte de treliças metálicas fabricadas pela Calman" loading="lazy">
+          <div class="galeria-caption">Entrega de treliças metálicas</div>
+        </div>
+        <div class="galeria-item">
+          <img src="midias/1189229443253339.jpeg" alt="Içamento de transformador elétrico com caminhão munck na oficina da Calman" loading="lazy">
+          <div class="galeria-caption">Içamento de equipamentos na oficina</div>
+        </div>
+      </div>
+
+      <!-- Fabricação de guarda corpos -->
+      <div style="margin-top: 3.5rem;">
+        <div class="sec-header">
+          <span class="tag">Serviços em destaque</span>
+          <h2>Fabricação de Guarda Corpos</h2>
+          <p>Solda com precisão, jateamento e pintura industrial.</p>
+        </div>
+
+        <div class="galeria-grid">
+          <div class="galeria-item">
+            <img src="midias/1648761102994653.jpeg" alt="Fabricação de guarda corpos com solda de precisão" loading="lazy">
+            <div class="galeria-caption">Fabricação de guarda corpos</div>
+          </div>
+          <div class="galeria-item">
+            <img src="midias/2553863508366096.jpeg" alt="Solda com precisão em guarda corpos industriais" loading="lazy">
+            <div class="galeria-caption">Solda com precisão</div>
+          </div>
+          <div class="galeria-item">
+            <img src="midias/28111170491805018.jpeg" alt="Jateamento industrial em estruturas metálicas" loading="lazy">
+            <div class="galeria-caption">Jateamento industrial</div>
+          </div>
+          <div class="galeria-item">
+            <img src="midias/834326975965617.jpeg" alt="Pintura industrial em guarda corpos" loading="lazy">
+            <div class="galeria-caption">Pintura industrial</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Instalação de Peneira Vibratória -->
+      <div style="margin-top: 3.5rem;">
+        <div class="sec-header">
+          <span class="tag">Caso de sucesso</span>
+          <h2>Instalação de Peneira Vibratória</h2>
+          <p>Montagem e instalação completa de peneira vibratória em planta industrial — precisão técnica do início ao fim.</p>
+        </div>
+
+        <div class="galeria-grid">
+          <div class="galeria-item">
+            <img src="instala%C3%A7%C3%A3o%20peneira%20vibratoria/1000587842431495.jpeg" alt="Instalação de peneira vibratória — visão geral da estrutura" loading="lazy">
+            <div class="galeria-caption">Estrutura da peneira vibratória</div>
+          </div>
+          <div class="galeria-item">
+            <img src="instala%C3%A7%C3%A3o%20peneira%20vibratoria/875835982214101.jpeg" alt="Montagem da peneira vibratória em planta industrial" loading="lazy">
+            <div class="galeria-caption">Montagem em planta industrial</div>
+          </div>
+          <div class="galeria-item">
+            <img src="instala%C3%A7%C3%A3o%20peneira%20vibratoria/2075903076675219.jpeg" alt="Detalhe da instalação da peneira vibratória" loading="lazy">
+            <div class="galeria-caption">Detalhe de instalação</div>
+          </div>
+          <div class="galeria-item">
+            <img src="instala%C3%A7%C3%A3o%20peneira%20vibratoria/1504259164406331.jpeg" alt="Peneira vibratória instalada e finalizada" loading="lazy">
+            <div class="galeria-caption">Instalação finalizada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CAPACIDADE TÉCNICA ═════════════════════════════════ -->
+  <section id="capacidade" class="section-pad" aria-labelledby="cap-titulo">
+    <div class="container">
+      <div class="sec-header">
+        <span class="tag">Nossa estrutura</span>
+        <h2 id="cap-titulo">Capacidade técnica e infraestrutura</h2>
+        <p>Equipamentos modernos, equipe certificada e oficina completa para atender projetos de qualquer porte com precisão e segurança.</p>
+      </div>
+
+      <div class="cap-grid">
+        <div class="cap-card">
+          <div class="cap-ico" aria-hidden="true"><i class="fas fa-cut"></i></div>
+          <h3>Corte a plasma CNC</h3>
+          <p>Corte automatizado de alta precisão em chapas de até 16&nbsp;mm — ideal para peças complexas e seriadas com acabamento impecável.</p>
+          <span class="cap-badge">Até 16 mm</span>
+        </div>
+
+        <div class="cap-card">
+          <div class="cap-ico" aria-hidden="true"><i class="fas fa-fire"></i></div>
+          <h3>Oxicorte industrial</h3>
+          <p>Corte termoquímico em chapas de aço de até 60&nbsp;mm de espessura, para estruturas de grande porte e perfis robustos.</p>
+          <span class="cap-badge">Até 60 mm</span>
+        </div>
+
+        <div class="cap-card">
+          <div class="cap-ico" aria-hidden="true"><i class="fas fa-warehouse"></i></div>
+          <h3>Oficina de 600 m²</h3>
+          <p>Instalações modernas em Santa Cruz de Minas, equipadas para fabricação e manutenção de pequenos e grandes projetos industriais.</p>
+          <span class="cap-badge">Frota própria inclusa</span>
+        </div>
+
+        <div class="cap-card">
+          <div class="cap-ico" aria-hidden="true"><i class="fas fa-hard-hat"></i></div>
+          <h3>Certificação NR 35</h3>
+          <p>Equipe treinada e certificada para trabalho em altura com plataformas elevatórias, cumprindo rigorosamente a NR 35.</p>
+          <span class="cap-badge">Trabalho em altura</span>
+        </div>
+
+        <div class="cap-card">
+          <div class="cap-ico" aria-hidden="true"><i class="fas fa-wind"></i></div>
+          <h3>Certificação NR 33</h3>
+          <p>Profissionais habilitados para operações em espaços confinados, garantindo segurança total nas intervenções industriais.</p>
+          <span class="cap-badge">Espaços confinados</span>
+        </div>
+
+        <div class="cap-card">
+          <div class="cap-ico" aria-hidden="true"><i class="fas fa-truck-monster"></i></div>
+          <h3>Caminhão munck próprio</h3>
+          <p>Içamento, transporte e posicionamento de estruturas metálicas com frota própria — agilidade e independência logística.</p>
+          <span class="cap-badge">Frota própria</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══ MERCADO ══════════════════════════════════════════════ -->
   <section id="mercado" class="section-pad" aria-labelledby="mercado-titulo">
     <div class="container">
@@ -1021,6 +1490,14 @@
           <div class="setor-ico" aria-hidden="true"><i class="fas fa-wrench"></i></div>
           <h3>Manutenção geral</h3>
         </div>
+        <div class="setor">
+          <div class="setor-ico" aria-hidden="true"><i class="fas fa-flask"></i></div>
+          <h3>Química</h3>
+        </div>
+        <div class="setor">
+          <div class="setor-ico" aria-hidden="true"><i class="fas fa-utensils"></i></div>
+          <h3>Alimentícia</h3>
+        </div>
       </div>
     </div>
   </section>
@@ -1037,16 +1514,80 @@
       <div class="servicos-grid">
         <article class="serv-card">
           <div class="serv-head">
+            <div class="serv-ico" aria-hidden="true"><i class="fas fa-fire-alt"></i></div>
+            <h3>Caldeiraria especializada</h3>
+          </div>
+          <div class="serv-body">
+            <p>Fabricação e montagem de equipamentos de pressão e estruturas metálicas com alta precisão técnica e soldagem certificada.</p>
+            <ul class="serv-list">
+              <li>Caldeiras e vasos de pressão</li>
+              <li>Soldagem MIG, TIG e eletrodo revestido</li>
+              <li>Conformação de chapas e perfis</li>
+              <li>Projetos sob especificação técnica</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="serv-card">
+          <div class="serv-head">
             <div class="serv-ico" aria-hidden="true"><i class="fas fa-tools"></i></div>
             <h3>Manutenção industrial</h3>
           </div>
           <div class="serv-body">
-            <p>Especializados em estratégias de manutenção preventiva e corretiva, focados em maximizar a disponibilidade dos seus ativos industriais.</p>
+            <p>Manutenção preditiva, preventiva e corretiva para maximizar a disponibilidade dos seus ativos e reduzir paradas não planejadas.</p>
             <ul class="serv-list">
-              <li>Manutenção preventiva planejada</li>
+              <li>Manutenção preditiva e preventiva</li>
               <li>Manutenção corretiva de emergência</li>
               <li>Inspeção e diagnóstico de equipamentos</li>
-              <li>Minimização de paradas não planejadas</li>
+              <li>Transportadoras de correias industriais</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="serv-card">
+          <div class="serv-head">
+            <div class="serv-ico" aria-hidden="true"><i class="fas fa-cut"></i></div>
+            <h3>Corte a plasma CNC e oxicorte</h3>
+          </div>
+          <div class="serv-body">
+            <p>Corte automatizado de alta precisão com CNC plasma (até 16&nbsp;mm) e oxicorte industrial (até 60&nbsp;mm) para peças simples ou complexas.</p>
+            <ul class="serv-list">
+              <li>Plasma CNC: chapas até 16&nbsp;mm</li>
+              <li>Oxicorte: chapas até 60&nbsp;mm</li>
+              <li>Peças seriadas e unitárias sob medida</li>
+              <li>Alta precisão dimensional garantida</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="serv-card">
+          <div class="serv-head">
+            <div class="serv-ico" aria-hidden="true"><i class="fas fa-arrows-alt-v"></i></div>
+            <h3>Içamento de cargas</h3>
+          </div>
+          <div class="serv-body">
+            <p>Içamento, transporte e posicionamento de estruturas pesadas com caminhão munck próprio e equipe certificada em NR 35.</p>
+            <ul class="serv-list">
+              <li>Içamento de estruturas e equipamentos</li>
+              <li>Elevação de pessoas em plataformas</li>
+              <li>Caminhão munck próprio (sem terceirizar)</li>
+              <li>Equipe certificada NR 35</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="serv-card">
+          <div class="serv-head">
+            <div class="serv-ico" aria-hidden="true"><i class="fas fa-project-diagram"></i></div>
+            <h3>Tubulações e montagens</h3>
+          </div>
+          <div class="serv-body">
+            <p>Fabricação e instalação de tubulações industriais em aço carbono e inox, além de montagem eletromecânica e adequações estruturais.</p>
+            <ul class="serv-list">
+              <li>Tubulações em aço carbono e inox</li>
+              <li>Peças em cobre para indústria</li>
+              <li>Montagens e adequações estruturais</li>
+              <li>Proteções para partes móveis (NR 12)</li>
             </ul>
           </div>
         </article>
@@ -1054,37 +1595,35 @@
         <article class="serv-card">
           <div class="serv-head">
             <div class="serv-ico" aria-hidden="true"><i class="fas fa-recycle"></i></div>
-            <h3>Restauração de ativos</h3>
+            <h3>Restauração de equipamentos</h3>
           </div>
           <div class="serv-body">
-            <p>Recuperamos a eficiência do que já existe. Nosso serviço de restauração estende a vida útil de equipamentos com desgaste severo.</p>
+            <p>Recuperamos a eficiência do que já existe — extensão da vida útil de equipamentos com desgaste severo, reduzindo custo de substituição.</p>
             <ul class="serv-list">
               <li>Recuperação de integridade estrutural</li>
               <li>Restauração da capacidade operacional</li>
-              <li>Tratamento de desgaste severo</li>
-              <li>Extensão da vida útil de equipamentos</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="serv-card">
-          <div class="serv-head">
-            <div class="serv-ico" aria-hidden="true"><i class="fas fa-fire-alt"></i></div>
-            <h3>Caldeiraria especializada</h3>
-          </div>
-          <div class="serv-body">
-            <p>Serviços especializados de caldeiraria com alta precisão técnica, atendendo os setores mais exigentes da indústria nacional.</p>
-            <ul class="serv-list">
-              <li>Fabricação de caldeiras e vasos de pressão</li>
-              <li>Soldagem especializada</li>
-              <li>Conformação de chapas e perfis</li>
-              <li>Projetos sob especificação técnica</li>
+              <li>Tratamento de desgaste e corrosão</li>
+              <li>Reservatórios e silos — reforma e reparo</li>
             </ul>
           </div>
         </article>
       </div>
     </div>
   </section>
+
+  <!-- ═══ CTA BANNER ══════════════════════════════════════════ -->
+  <div class="cta-banner" role="complementary" aria-label="Chamada para orçamento">
+    <div class="container cta-inner">
+      <div class="cta-text">
+        <h2>Precisa de um orçamento para seu projeto?</h2>
+        <p>Fale diretamente com nossa equipe — atendimento rápido, sem burocracia.</p>
+      </div>
+      <a href="https://wa.me/553233734979" class="btn btn-outline-white" style="white-space:nowrap; flex-shrink:0;">
+        <i class="fab fa-whatsapp"></i>
+        Solicitar orçamento
+      </a>
+    </div>
+  </div>
 
   <!-- ═══ PRODUTOS ════════════════════════════════════════════ -->
   <section id="produtos" class="section-pad" aria-labelledby="produtos-titulo">
@@ -1149,57 +1688,118 @@
 
   <!-- ═══ DEPOIMENTOS ══════════════════════════════════════════ -->
   <section id="depoimentos" class="section-pad" aria-labelledby="depoi-titulo">
+
     <div class="container">
       <div class="sec-header">
         <span class="tag">Depoimentos</span>
         <h2 id="depoi-titulo">O que dizem nossos clientes</h2>
         <p>A satisfação dos nossos clientes é o nosso maior indicador de qualidade e excelência.</p>
       </div>
-
-      <div class="depoi-grid">
-        <article class="depoi-card">
-          <div class="stars" aria-label="Avaliação 5 de 5 estrelas">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <p class="depoi-text">Ótimo atendimento. A equipe da Calman demonstrou profissionalismo e comprometimento em todo o processo do projeto.</p>
-          <div class="depoi-autor">
-            <div class="avatar" aria-hidden="true">C</div>
-            <div class="autor-info">
-              <div class="nome">Cliente</div>
-              <div class="cargo">Setor industrial</div>
-            </div>
-          </div>
-        </article>
-
-        <article class="depoi-card">
-          <div class="stars" aria-label="Avaliação 5 de 5 estrelas">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <p class="depoi-text">Empresa fantástica com ótimos profissionais. Recomendo sem hesitar para qualquer projeto de manutenção industrial.</p>
-          <div class="depoi-autor">
-            <div class="avatar" aria-hidden="true">E</div>
-            <div class="autor-info">
-              <div class="nome">Empresa parceira</div>
-              <div class="cargo">Manutenção industrial</div>
-            </div>
-          </div>
-        </article>
-
-        <article class="depoi-card">
-          <div class="stars" aria-label="Avaliação 5 de 5 estrelas">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <p class="depoi-text">Eficiência em manutenção industrial. Os prazos são cumpridos e a qualidade dos serviços supera as expectativas.</p>
-          <div class="depoi-autor">
-            <div class="avatar" aria-hidden="true">P</div>
-            <div class="autor-info">
-              <div class="nome">Parceiro comercial</div>
-              <div class="cargo">Setor de mineração</div>
-            </div>
-          </div>
-        </article>
-      </div>
     </div>
+
+    <!-- carousel fora do container: ocupa toda a largura da tela -->
+    <div class="dep-carousel" id="depCarousel">
+      <div class="dep-carr-outer" id="depCarrOuter">
+        <div class="dep-carr-track" id="carrTrack">
+
+          <div class="dep-carr-slide">
+            <article class="depoi-card">
+              <div class="stars" aria-label="5 estrelas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <p class="depoi-text">Empresa fantástica com ótimos profissionais.</p>
+              <div class="depoi-autor">
+                <div class="avatar" aria-hidden="true">R</div>
+                <div class="autor-info"><div class="nome">Rubinho Rios</div><div class="cargo">Avaliação no Google</div></div>
+              </div>
+            </article>
+          </div>
+
+          <div class="dep-carr-slide">
+            <article class="depoi-card">
+              <div class="stars" aria-label="5 estrelas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <p class="depoi-text">Eficiência em manutenção industrial.</p>
+              <div class="depoi-autor">
+                <div class="avatar" aria-hidden="true">B</div>
+                <div class="autor-info"><div class="nome">Bruna Silva</div><div class="cargo">Google Local Guide</div></div>
+              </div>
+            </article>
+          </div>
+
+          <div class="dep-carr-slide">
+            <article class="depoi-card">
+              <div class="stars" aria-label="5 estrelas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <p class="depoi-text">Excelente empresa.</p>
+              <div class="depoi-autor">
+                <div class="avatar" aria-hidden="true">V</div>
+                <div class="autor-info"><div class="nome">Vinicius Oliveira</div><div class="cargo">Avaliação no Google</div></div>
+              </div>
+            </article>
+          </div>
+
+          <div class="dep-carr-slide">
+            <article class="depoi-card">
+              <div class="stars" aria-label="5 estrelas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <p class="depoi-text">Excelentes profissionais.</p>
+              <div class="depoi-autor">
+                <div class="avatar" aria-hidden="true">M</div>
+                <div class="autor-info"><div class="nome">MATI 51</div><div class="cargo">Avaliação no Google</div></div>
+              </div>
+            </article>
+          </div>
+
+          <div class="dep-carr-slide">
+            <article class="depoi-card">
+              <div class="stars" aria-label="5 estrelas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <p class="depoi-text">Bom atendimento.</p>
+              <div class="depoi-autor">
+                <div class="avatar" aria-hidden="true">O</div>
+                <div class="autor-info"><div class="nome">Odilon Aparecido de Souza</div><div class="cargo">Google Local Guide</div></div>
+              </div>
+            </article>
+          </div>
+
+          <div class="dep-carr-slide">
+            <article class="depoi-card">
+              <div class="stars" aria-label="5 estrelas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <p class="depoi-text">Ótima.</p>
+              <div class="depoi-autor">
+                <div class="avatar" aria-hidden="true">X</div>
+                <div class="autor-info"><div class="nome">Xangry Boca Dura</div><div class="cargo">Avaliação no Google</div></div>
+              </div>
+            </article>
+          </div>
+
+          <div class="dep-carr-slide">
+            <article class="depoi-card">
+              <div class="stars" aria-label="5 estrelas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <p class="depoi-text">Bom.</p>
+              <div class="depoi-autor">
+                <div class="avatar" aria-hidden="true">F</div>
+                <div class="autor-info"><div class="nome">Fillipe Margotti</div><div class="cargo">Avaliação no Google</div></div>
+              </div>
+            </article>
+          </div>
+
+        </div>
+      </div>
+      <button class="dep-carr-arrow dep-carr-prev" id="carrPrev" aria-label="Avaliação anterior"><i class="fas fa-chevron-left"></i></button>
+      <button class="dep-carr-arrow dep-carr-next" id="carrNext" aria-label="Próxima avaliação"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <div class="container">
+      <div class="carr-dots" id="carrDots" role="tablist" aria-label="Navegar entre avaliações"></div>
+
+      <a href="https://share.google/XX9PSS0XAsVThgHBe" target="_blank" rel="noopener noreferrer" class="google-callout" aria-label="Ver avaliações no Google Maps">
+        <div>
+          <div class="google-stars" aria-hidden="true"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <div class="google-callout-text">
+            <strong>16 avaliações Excelente no Google</strong>
+            <p>Veja o que nossos clientes dizem sobre nosso trabalho e atendimento.</p>
+          </div>
+        </div>
+        <div class="google-cta"><i class="fab fa-google"></i> Ver avaliações no Google</div>
+      </a>
+    </div>
+
   </section>
 
   <!-- ═══ CONTATO ══════════════════════════════════════════════ -->
@@ -1231,11 +1831,19 @@
           </div>
 
           <div class="info-item">
+            <div class="info-ico" aria-hidden="true"><i class="fas fa-phone"></i></div>
+            <div>
+              <h3>Telefones</h3>
+              <a href="tel:+553233734979">(32) 3373-4979</a><br>
+              <a href="tel:+553298421976" style="font-size:.88rem; color:var(--gray-mid);">(32) 98421-9476</a>
+            </div>
+          </div>
+
+          <div class="info-item">
             <div class="info-ico" aria-hidden="true"><i class="fab fa-whatsapp"></i></div>
             <div>
               <h3>WhatsApp</h3>
-              <!-- ATENÇÃO: substitua 5532999999999 pelo número real de WhatsApp -->
-              <a href="https://wa.me/5532999999999">Enviar mensagem pelo WhatsApp</a>
+              <a href="https://wa.me/553233734979">(32) 3373-4979 — Enviar mensagem</a>
             </div>
           </div>
 
@@ -1264,16 +1872,14 @@
                 <a href="https://www.instagram.com/calman_caldeiraria/" target="_blank" rel="noopener noreferrer" class="soc-btn" aria-label="Instagram da Calman Caldeiraria">
                   <i class="fab fa-instagram"></i>
                 </a>
-                <!-- ATENÇÃO: substitua 5532999999999 pelo número real de WhatsApp -->
-                <a href="https://wa.me/5532999999999" class="soc-btn" aria-label="WhatsApp da Calman Caldeiraria">
+    <a href="https://wa.me/553233734979" class="soc-btn" aria-label="WhatsApp da Calman Caldeiraria">
                   <i class="fab fa-whatsapp"></i>
                 </a>
               </div>
             </div>
           </div>
 
-          <!-- ATENÇÃO: substitua 5532999999999 pelo número real de WhatsApp -->
-          <a href="https://wa.me/5532999999999" class="btn btn-primary" style="align-self:flex-start;">
+<a href="https://wa.me/553233734979" class="btn btn-primary" style="align-self:flex-start;">
             <i class="fab fa-whatsapp"></i>
             Solicitar orçamento pelo WhatsApp
           </a>
@@ -1282,7 +1888,7 @@
         <!-- Mapa -->
         <div class="mapa">
           <iframe
-            src="https://maps.google.com/maps?q=Av.+Min.+Gabriel+Passos,+92,+Centro,+Santa+Cruz+de+Minas,+MG,+36328-000&z=16&output=embed"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.821501603494!2d-44.235066700000004!3d-21.119681399999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa1c7c40f9adba7%3A0xdab8334c7a7dcc3a!2sCalman%20Caldeiraria%20ltda.!5e0!3m2!1spt-BR!2sbr!4v1778849066684!5m2!1spt-BR!2sbr"
             allowfullscreen
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
@@ -1299,14 +1905,13 @@
       <div class="footer-grid">
         <!-- Marca -->
         <div class="footer-brand">
-          <img src="1778591540617_logomarca_2_.jpg" alt="Logotipo Calman Caldeiraria" class="footer-logo">
+          <img src="midias/favicon.jpeg" alt="Logotipo Calman Caldeiraria" class="footer-logo">
           <p>Especialistas em caldeiraria, fabricação metal mecânica e manutenção industrial desde 2014. Qualidade, segurança e excelência em cada projeto.</p>
           <div class="footer-soc">
             <a href="https://www.instagram.com/calman_caldeiraria/" target="_blank" rel="noopener noreferrer" class="footer-soc-btn" aria-label="Instagram da Calman Caldeiraria">
               <i class="fab fa-instagram"></i>
             </a>
-            <!-- ATENÇÃO: substitua 5532999999999 pelo número real de WhatsApp -->
-            <a href="https://wa.me/5532999999999" class="footer-soc-btn" aria-label="WhatsApp da Calman Caldeiraria">
+    <a href="https://wa.me/553233734979" class="footer-soc-btn" aria-label="WhatsApp da Calman Caldeiraria">
               <i class="fab fa-whatsapp"></i>
             </a>
           </div>
@@ -1316,7 +1921,10 @@
         <div>
           <div class="footer-title">Navegação</div>
           <ul class="footer-links">
+            <li><a href="#hero">Início</a></li>
             <li><a href="#sobre">Sobre nós</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#capacidade">Capacidade técnica</a></li>
             <li><a href="#mercado">Mercado de atuação</a></li>
             <li><a href="#servicos">Serviços</a></li>
             <li><a href="#produtos">Produtos</a></li>
@@ -1333,6 +1941,12 @@
             <span>Av. Min. Gabriel Passos, 92, Centro – Santa Cruz de Minas, MG</span>
           </div>
           <div class="footer-contact-item">
+            <i class="fas fa-phone" aria-hidden="true"></i>
+            <span>
+              <a href="tel:+553298421976">(32) 98421-9476</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="tel:+553233734979">(32) 3373-4979</a>
+            </span>
+          </div>
+          <div class="footer-contact-item">
             <i class="fas fa-envelope" aria-hidden="true"></i>
             <a href="mailto:calmansjdr@gmail.com">calmansjdr@gmail.com</a>
           </div>
@@ -1346,7 +1960,7 @@
       <hr class="footer-divider">
 
       <div class="footer-bottom">
-        <span>&copy; 2024 Calman Caldeiraria. Todos os direitos reservados.</span>
+        <span>&copy; 2026 Calman Caldeiraria. Todos os direitos reservados.</span>
         <span>CNPJ: 20.538.691/0001-99</span>
       </div>
     </div>
@@ -1355,7 +1969,7 @@
   <!-- ═══ WHATSAPP FLUTUANTE ══════════════════════════════════ -->
   <div class="wa-float">
     <!-- ATENÇÃO: substitua 5532999999999 pelo número real de WhatsApp -->
-    <a href="https://wa.me/5532999999999" target="_blank" rel="noopener noreferrer" aria-label="Falar com a Calman Caldeiraria pelo WhatsApp">
+    <a href="https://wa.me/553233734979" target="_blank" rel="noopener noreferrer" aria-label="Falar com a Calman Caldeiraria pelo WhatsApp">
       <i class="fab fa-whatsapp"></i>
     </a>
   </div>
@@ -1397,6 +2011,141 @@
     document.querySelectorAll('#mainNav a').forEach(link => {
       link.addEventListener('click', fecharMenu);
     });
+
+    // Carrossel multi-card de depoimentos
+    (function () {
+      const outer    = document.getElementById('depCarrOuter');
+      const track    = document.getElementById('carrTrack');
+      const dotsWrap = document.getElementById('carrDots');
+      const btnPrev  = document.getElementById('carrPrev');
+      const btnNext  = document.getElementById('carrNext');
+
+      const origSlides = Array.from(track.querySelectorAll('.dep-carr-slide'));
+      const N = origSlides.length;
+
+      // Clona ao final (loop para frente) e ao início (loop para trás)
+      origSlides.forEach(s => {
+        const c = s.cloneNode(true);
+        c.setAttribute('aria-hidden', 'true');
+        track.appendChild(c);
+      });
+      origSlides.slice().reverse().forEach(s => {
+        const c = s.cloneNode(true);
+        c.setAttribute('aria-hidden', 'true');
+        track.insertBefore(c, track.firstChild);
+      });
+
+      // idx=N aponta para o primeiro slide real (após N clones no início)
+      let idx = N;
+      let timer;
+
+      function pv() {
+        const w = outer.offsetWidth;
+        return w >= 860 ? 5 : w >= 520 ? 3 : 2;
+      }
+
+      function slideW() {
+        const s = track.children[0];
+        const gap = parseFloat(getComputedStyle(track).columnGap ||
+                               getComputedStyle(track).gap) || 20;
+        return s.offsetWidth + gap;
+      }
+
+      function buildDots() {
+        dotsWrap.innerHTML = '';
+        const count = N - pv() + 1;
+        for (let i = 0; i < count; i++) {
+          const btn = document.createElement('button');
+          btn.className = 'carr-dot' + (i === 0 ? ' active' : '');
+          btn.setAttribute('role', 'tab');
+          btn.setAttribute('aria-label', 'Posição ' + (i + 1));
+          btn.addEventListener('click', () => { stop(); moveTo(N + i); start(); });
+          dotsWrap.appendChild(btn);
+        }
+      }
+
+      function updateDots() {
+        const dots = dotsWrap.querySelectorAll('.carr-dot');
+        const realIdx = ((idx - N) % N + N) % N;
+        const dotIdx  = Math.min(realIdx, dots.length - 1);
+        dots.forEach((d, i) => d.classList.toggle('active', i === dotIdx));
+      }
+
+      function moveTo(n, animate) {
+        idx = n;
+        if (animate === false) {
+          track.style.transition = 'none';
+          track.getBoundingClientRect(); // força reflow
+        } else {
+          track.style.transition = 'transform .5s cubic-bezier(.4,0,.2,1)';
+        }
+        track.style.transform = 'translateX(-' + (idx * slideW()) + 'px)';
+        updateDots();
+      }
+
+      // Após cada transição: reposiciona silenciosamente se saiu da zona real
+      track.addEventListener('transitionend', e => {
+        if (e.propertyName !== 'transform') return;
+        if (idx >= N + N) moveTo(idx - N, false);
+        else if (idx < N)  moveTo(idx + N, false);
+        track.style.transition = '';
+      });
+
+      function next() { moveTo(idx + 1); }
+      function prev() { moveTo(idx - 1); }
+
+      function start() { timer = setInterval(next, 3000); }
+      function stop()  { clearInterval(timer); }
+
+      btnNext.addEventListener('click', () => { stop(); next(); start(); });
+      btnPrev.addEventListener('click', () => { stop(); prev(); start(); });
+
+      outer.addEventListener('mouseenter', stop);
+      outer.addEventListener('mouseleave', start);
+
+      // Drag com mouse e swipe touch
+      let dragStartX = null;
+      let isDragging = false;
+
+      function onDragStart(x) {
+        dragStartX = x;
+        isDragging = false;
+        track.style.cursor = 'grabbing';
+        stop();
+      }
+
+      function onDragMove(x) {
+        if (dragStartX === null) return;
+        if (Math.abs(x - dragStartX) > 5) isDragging = true;
+      }
+
+      function onDragEnd(x) {
+        if (dragStartX === null) return;
+        track.style.cursor = '';
+        const d = dragStartX - x;
+        if (Math.abs(d) > 40) { d > 0 ? next() : prev(); }
+        dragStartX = null;
+        isDragging = false;
+        start();
+      }
+
+      outer.addEventListener('mousedown',  e => onDragStart(e.clientX));
+      window.addEventListener('mousemove', e => onDragMove(e.clientX));
+      window.addEventListener('mouseup',   e => onDragEnd(e.clientX));
+
+      // Impede clique em links dentro do card durante drag
+      outer.addEventListener('click', e => { if (isDragging) e.preventDefault(); }, true);
+
+      outer.addEventListener('touchstart', e => onDragStart(e.touches[0].clientX), { passive: true });
+      outer.addEventListener('touchmove',  e => onDragMove(e.touches[0].clientX),  { passive: true });
+      outer.addEventListener('touchend',   e => onDragEnd(e.changedTouches[0].clientX));
+
+      window.addEventListener('resize', () => { buildDots(); moveTo(idx, false); });
+
+      buildDots();
+      moveTo(N, false); // posiciona no primeiro slide real sem animação
+      start();
+    })();
   </script>
 </body>
 </html>
