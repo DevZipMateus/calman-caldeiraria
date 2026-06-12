@@ -913,42 +913,256 @@
       color: var(--gray-light);
     }
 
-    /* ─── GALERIA ────────────────────────────────────────────── */
+    /* ─── PORTFÓLIO / GALERIA ───────────────────────────────── */
     #galeria { background: var(--off-white); }
 
-    .galeria-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.25rem;
-    }
-    @media (max-width: 640px) {
-      .galeria-grid { grid-template-columns: 1fr; }
+    .portfolio-filtros {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
     }
 
-    .galeria-item {
-      position: relative;
+    .filtro-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .55rem 1.25rem;
+      border: 2px solid var(--border);
+      background: var(--white);
+      color: var(--gray);
+      font-family: var(--font-head);
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .filtro-btn:hover { border-color: var(--green); color: var(--green); }
+    .filtro-btn.active { background: var(--green); border-color: var(--green); color: var(--white); }
+    .filtro-btn .fc {
+      background: var(--green-light);
+      color: var(--green);
+      font-size: .7rem;
+      padding: .1rem .45rem;
+      border-radius: 100px;
+    }
+    .filtro-btn.active .fc { background: rgba(255,255,255,.25); color: var(--white); }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 1024px) { .portfolio-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 640px)  { .portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 380px)  { .portfolio-grid { grid-template-columns: 1fr; } }
+
+    .proj-card {
+      background: var(--white);
       border-radius: var(--radius-lg);
       overflow: hidden;
-      box-shadow: var(--shadow-md);
-      aspect-ratio: 16/9;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: box-shadow .25s, transform .25s;
     }
-    .galeria-item img {
+    .proj-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .proj-card.hidden { display: none; }
+
+    .proj-thumb {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+    .proj-thumb img {
       width: 100%; height: 100%;
       object-fit: cover;
       display: block;
       transition: transform .45s;
     }
-    .galeria-item:hover img { transform: scale(1.05); }
-    .galeria-caption {
+    .proj-card:hover .proj-thumb img { transform: scale(1.07); }
+
+    .proj-overlay {
       position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 2.5rem 1.25rem 1rem;
-      background: linear-gradient(transparent, rgba(0,0,0,.62));
+      inset: 0;
+      background: rgba(15,67,37,.52);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity .25s;
+    }
+    .proj-card:hover .proj-overlay { opacity: 1; }
+    .proj-overlay-ico {
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,.18);
+      border: 2px solid rgba(255,255,255,.6);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white);
+      font-size: 1.1rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .proj-count-badge {
+      position: absolute;
+      top: .6rem; right: .6rem;
+      background: rgba(0,0,0,.52);
       color: var(--white);
       font-family: var(--font-head);
-      font-size: .88rem;
+      font-size: .68rem;
       font-weight: 600;
+      padding: .2rem .55rem;
+      border-radius: 100px;
+      display: flex; align-items: center; gap: .3rem;
+      backdrop-filter: blur(4px);
     }
+
+    .proj-info { padding: .8rem 1rem; }
+    .proj-info h3 {
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--gray-dark);
+      line-height: 1.35;
+      margin-bottom: .35rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .proj-cat-label {
+      font-family: var(--font-head);
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    /* ─── LIGHTBOX ───────────────────────────────────────────── */
+    .lb-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.93);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s, visibility .3s;
+    }
+    .lb-overlay.open { opacity: 1; visibility: visible; }
+
+    .lb-wrap {
+      position: relative;
+      max-width: min(90vw, 1080px);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .875rem;
+      padding: 0 4rem;
+    }
+    @media (max-width: 640px) { .lb-wrap { padding: 0 2.5rem; } }
+
+    .lb-img-wrap {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 120px;
+    }
+    .lb-img-wrap img {
+      max-width: 100%;
+      max-height: 78vh;
+      object-fit: contain;
+      border-radius: var(--radius);
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+      display: block;
+      transition: opacity .2s;
+    }
+    .lb-img-wrap img.lb-loading { opacity: 0; }
+    .lb-loader {
+      display: none;
+      position: absolute;
+      width: 44px; height: 44px;
+      border: 4px solid rgba(255,255,255,.2);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: lb-spin .7s linear infinite;
+    }
+    .lb-img-wrap.loading .lb-loader { display: block; }
+    .lb-img-wrap.loading img { opacity: 0; }
+    @keyframes lb-spin { to { transform: rotate(360deg); } }
+
+    .lb-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .lb-title {
+      color: var(--white);
+      font-family: var(--font-head);
+      font-size: .9rem;
+      font-weight: 600;
+      flex: 1;
+      padding-right: 1rem;
+    }
+    .lb-counter {
+      color: rgba(255,255,255,.5);
+      font-size: .8rem;
+      font-family: var(--font-head);
+      flex-shrink: 0;
+    }
+
+    .lb-btn {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,.1);
+      border: 2px solid rgba(255,255,255,.22);
+      color: var(--white);
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      display: none;
+      align-items: center; justify-content: center;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: background .2s;
+      z-index: 99999;
+      pointer-events: auto;
+    }
+    .lb-btn:hover { background: rgba(255,255,255,.22); }
+    .lb-btn:disabled { opacity: .2; pointer-events: none; }
+    .lb-btn.lb-visible { display: flex; }
+    .lb-prev { left: 1.25rem; }
+    .lb-next { right: 1.25rem; }
+    @media (max-width: 640px) {
+      .lb-btn { width: 38px; height: 38px; font-size: .85rem; }
+      .lb-prev { left: .35rem; }
+      .lb-next { right: .35rem; }
+    }
+
+    .lb-close {
+      position: fixed;
+      top: 1rem; right: 1rem;
+      background: rgba(255,255,255,.1);
+      border: 2px solid rgba(255,255,255,.22);
+      color: var(--white);
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .95rem;
+      cursor: pointer;
+      transition: background .2s;
+      z-index: 10001;
+    }
+    .lb-close:hover { background: rgba(255,255,255,.22); }
 
     /* ─── CAPACIDADE TÉCNICA ─────────────────────────────── */
     #capacidade { background: var(--off-white); }
@@ -1315,91 +1529,358 @@
     </div>
   </section>
 
-  <!-- ═══ GALERIA ════════════════════════════════════════════ -->
+  <!-- ═══ GALERIA / PORTFÓLIO ═══════════════════════════════ -->
   <section id="galeria" class="section-pad" aria-labelledby="galeria-titulo">
     <div class="container">
       <div class="sec-header">
         <span class="tag">Nossos projetos</span>
-        <h2 id="galeria-titulo">Frota própria e trabalhos em campo</h2>
-        <p>Caminhão munck próprio para içamento, transporte e montagem de estruturas metálicas — agilidade e segurança em cada projeto.</p>
+        <h2 id="galeria-titulo">Portfólio de projetos</h2>
+        <p>27 projetos concluídos em fabricação, construção, reforma e adequação às normas de segurança. Clique em um projeto para ver as fotos.</p>
       </div>
 
-      <div class="galeria-grid">
-        <div class="galeria-item">
-          <img src="midias/869790199482911.jpeg" alt="Caminhão munck Calman em operação em planta industrial de grande porte" loading="lazy">
-          <div class="galeria-caption">Operação em planta industrial</div>
-        </div>
-        <div class="galeria-item">
-          <img src="midias/4170171406627612.jpeg" alt="Içamento de estruturas metálicas próximo a represa" loading="lazy">
-          <div class="galeria-caption">Içamento de estruturas em área aquática</div>
-        </div>
-        <div class="galeria-item">
-          <img src="midias/4352466251738360.jpeg" alt="Transporte de treliças metálicas fabricadas pela Calman" loading="lazy">
-          <div class="galeria-caption">Entrega de treliças metálicas</div>
-        </div>
-        <div class="galeria-item">
-          <img src="midias/1189229443253339.jpeg" alt="Içamento de transformador elétrico com caminhão munck na oficina da Calman" loading="lazy">
-          <div class="galeria-caption">Içamento de equipamentos na oficina</div>
-        </div>
+      <!-- Filtros -->
+      <div class="portfolio-filtros" role="group" aria-label="Filtrar projetos por categoria">
+        <button class="filtro-btn active" data-cat="todos">Todos <span class="fc">27</span></button>
+        <button class="filtro-btn" data-cat="fabricacao">Fabricação <span class="fc">13</span></button>
+        <button class="filtro-btn" data-cat="construcao">Construção <span class="fc">9</span></button>
+        <button class="filtro-btn" data-cat="reforma">Reforma <span class="fc">2</span></button>
+        <button class="filtro-btn" data-cat="seguranca">Segurança NR <span class="fc">3</span></button>
       </div>
 
-      <!-- Fabricação de guarda corpos -->
-      <div style="margin-top: 3.5rem;">
-        <div class="sec-header">
-          <span class="tag">Serviços em destaque</span>
-          <h2>Fabricação de Guarda Corpos</h2>
-          <p>Solda com precisão, jateamento e pintura industrial.</p>
+      <!-- Grid de projetos -->
+      <div class="portfolio-grid" id="portfolioGrid">
+
+        <!-- Frota Munck -->
+        <div class="proj-card" data-cat="construcao"
+          data-title="Frota e Manutenção em Campo"
+          data-imgs='["galeria-projetos/frota-munck/869790199482911.jpeg","galeria-projetos/frota-munck/4170171406627612.jpeg","galeria-projetos/frota-munck/4352466251738360.jpeg","galeria-projetos/frota-munck/1189229443253339.jpeg","galeria-projetos/frota-munck/975974172072515.jpeg","galeria-projetos/frota-munck/1515094016813315.jpeg","galeria-projetos/frota-munck/2374531599707626.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/frota-munck/869790199482911.jpeg" alt="Frota e manutenção em campo" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 7</span>
+          </div>
+          <div class="proj-info"><h3>Frota e Manutenção em Campo</h3><span class="proj-cat-label">Construção</span></div>
         </div>
 
-        <div class="galeria-grid">
-          <div class="galeria-item">
-            <img src="midias/1648761102994653.jpeg" alt="Fabricação de guarda corpos com solda de precisão" loading="lazy">
-            <div class="galeria-caption">Fabricação de guarda corpos</div>
+        <!-- Fabricação e Instalação de Escada e Guarda Corpos -->
+        <div class="proj-card" data-cat="fabricacao"
+          data-title="Fabricação e Instalação de Escada e Guarda Corpos"
+          data-imgs='["galeria-projetos/guarda-corpos-fab/1648761102994653.jpeg","galeria-projetos/guarda-corpos-fab/2553863508366096.jpeg","galeria-projetos/guarda-corpos-fab/28111170491805018.jpeg","galeria-projetos/guarda-corpos-fab/834326975965617.jpeg","galeria-projetos/moinho-de-rolos/1498262491767580.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/guarda-corpos-fab/1648761102994653.jpeg" alt="Fabricação e instalação de escada e guarda corpos" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 5</span>
           </div>
-          <div class="galeria-item">
-            <img src="midias/2553863508366096.jpeg" alt="Solda com precisão em guarda corpos industriais" loading="lazy">
-            <div class="galeria-caption">Solda com precisão</div>
-          </div>
-          <div class="galeria-item">
-            <img src="midias/28111170491805018.jpeg" alt="Jateamento industrial em estruturas metálicas" loading="lazy">
-            <div class="galeria-caption">Jateamento industrial</div>
-          </div>
-          <div class="galeria-item">
-            <img src="midias/834326975965617.jpeg" alt="Pintura industrial em guarda corpos" loading="lazy">
-            <div class="galeria-caption">Pintura industrial</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Instalação de Peneira Vibratória -->
-      <div style="margin-top: 3.5rem;">
-        <div class="sec-header">
-          <span class="tag">Caso de sucesso</span>
-          <h2>Instalação de Peneira Vibratória</h2>
-          <p>Montagem e instalação completa de peneira vibratória em planta industrial — precisão técnica do início ao fim.</p>
+          <div class="proj-info"><h3>Fabricação e Instalação de Escada e Guarda Corpos</h3><span class="proj-cat-label">Fabricação</span></div>
         </div>
 
-        <div class="galeria-grid">
-          <div class="galeria-item">
-            <img src="instala%C3%A7%C3%A3o%20peneira%20vibratoria/1000587842431495.jpeg" alt="Instalação de peneira vibratória — visão geral da estrutura" loading="lazy">
-            <div class="galeria-caption">Estrutura da peneira vibratória</div>
+        <!-- Peneira Vibratória -->
+        <div class="proj-card" data-cat="construcao"
+          data-title="Instalação de Peneira Vibratória"
+          data-imgs='["galeria-projetos/peneira-vibratoria/1000587842431495.jpeg","galeria-projetos/peneira-vibratoria/875835982214101.jpeg","galeria-projetos/peneira-vibratoria/2075903076675219.jpeg","galeria-projetos/peneira-vibratoria/1504259164406331.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/peneira-vibratoria/1000587842431495.jpeg" alt="Instalação de peneira vibratória" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 4</span>
           </div>
-          <div class="galeria-item">
-            <img src="instala%C3%A7%C3%A3o%20peneira%20vibratoria/875835982214101.jpeg" alt="Montagem da peneira vibratória em planta industrial" loading="lazy">
-            <div class="galeria-caption">Montagem em planta industrial</div>
-          </div>
-          <div class="galeria-item">
-            <img src="instala%C3%A7%C3%A3o%20peneira%20vibratoria/2075903076675219.jpeg" alt="Detalhe da instalação da peneira vibratória" loading="lazy">
-            <div class="galeria-caption">Detalhe de instalação</div>
-          </div>
-          <div class="galeria-item">
-            <img src="instala%C3%A7%C3%A3o%20peneira%20vibratoria/1504259164406331.jpeg" alt="Peneira vibratória instalada e finalizada" loading="lazy">
-            <div class="galeria-caption">Instalação finalizada</div>
-          </div>
+          <div class="proj-info"><h3>Instalação de Peneira Vibratória</h3><span class="proj-cat-label">Construção</span></div>
         </div>
-      </div>
+
+        <!-- Tampas para Canaletas -->
+        <div class="proj-card" data-cat="construcao"
+          data-title="Tampas para Canaletas de Captação de Fluídos"
+          data-imgs='["galeria-projetos/tampas-canaletas/1347991950538969.jpeg","galeria-projetos/tampas-canaletas/1401731125052422.jpeg","galeria-projetos/tampas-canaletas/1490667762784651.jpeg","galeria-projetos/tampas-canaletas/942738692097114.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/tampas-canaletas/1347991950538969.jpeg" alt="Tampas para canaletas" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 4</span>
+          </div>
+          <div class="proj-info"><h3>Tampas para Canaletas de Captação de Fluídos</h3><span class="proj-cat-label">Construção</span></div>
+        </div>
+
+        <!-- Tubulação Ácido Sulfúrico -->
+        <div class="proj-card" data-cat="fabricacao"
+          data-title="Tubulação de Ácido Sulfúrico com Ensaio LP"
+          data-imgs='["galeria-projetos/tubulacao-acido-sulfurico/1480638540196079.jpeg","galeria-projetos/tubulacao-acido-sulfurico/1504183784836620.jpeg","galeria-projetos/tubulacao-acido-sulfurico/2180042645902178.jpeg","galeria-projetos/tubulacao-acido-sulfurico/988758467069606.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/tubulacao-acido-sulfurico/1480638540196079.jpeg" alt="Tubulação de ácido sulfúrico" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 4</span>
+          </div>
+          <div class="proj-info"><h3>Tubulação de Ácido Sulfúrico com Ensaio LP</h3><span class="proj-cat-label">Fabricação</span></div>
+        </div>
+
+        <!-- Reservatório Metálico -->
+        <div class="proj-card" data-cat="fabricacao"
+          data-title="Reservatório Metálico para Produtos Químicos"
+          data-imgs='["galeria-projetos/reservatorio-metalico/1657735985432770.jpeg","galeria-projetos/reservatorio-metalico/1993412417955339.jpeg","galeria-projetos/reservatorio-metalico/1999452120943110.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/reservatorio-metalico/1657735985432770.jpeg" alt="Reservatório metálico para produtos químicos" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 3</span>
+          </div>
+          <div class="proj-info"><h3>Reservatório Metálico para Produtos Químicos</h3><span class="proj-cat-label">Fabricação</span></div>
+        </div>
+
+        <!-- Válvula Rotativa -->
+        <div class="proj-card" data-cat="fabricacao"
+          data-title="Fabricação de Válvula Rotativa"
+          data-imgs='["galeria-projetos/valvula-rotativa/2153150275476602.jpeg","galeria-projetos/valvula-rotativa/964177783181260.jpeg","galeria-projetos/valvula-rotativa/975013878712846.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/valvula-rotativa/2153150275476602.jpeg" alt="Fabricação de válvula rotativa" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 3</span>
+          </div>
+          <div class="proj-info"><h3>Fabricação de Válvula Rotativa</h3><span class="proj-cat-label">Fabricação</span></div>
+        </div>
+
+        <!-- Portão Alambrado -->
+        <div class="proj-card" data-cat="fabricacao"
+          data-title="Fabricação de Portão com Tela Alambrado"
+          data-imgs='["galeria-projetos/portao-alambrado/1688726955475041.jpeg","galeria-projetos/portao-alambrado/2039527880252795.jpeg","galeria-projetos/portao-alambrado/2057092231893605.jpeg","galeria-projetos/portao-alambrado/1349917870360440.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/portao-alambrado/1688726955475041.jpeg" alt="Portão com tela alambrado" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 4</span>
+          </div>
+          <div class="proj-info"><h3>Fabricação de Portão com Tela Alambrado</h3><span class="proj-cat-label">Fabricação</span></div>
+        </div>
+
+        <!-- Moinho de Rolos -->
+        <div class="proj-card" data-cat="reforma"
+          data-title="Reforma de Moinho de Rolos"
+          data-imgs='["galeria-projetos/moinho-de-rolos/1498262491767580.jpeg","galeria-projetos/moinho-de-rolos/1561814175554257.jpeg","galeria-projetos/moinho-de-rolos/3211021519086263.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/moinho-de-rolos/1498262491767580.jpeg" alt="Reforma de moinho de rolos" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 3</span>
+          </div>
+          <div class="proj-info"><h3>Reforma de Moinho de Rolos</h3><span class="proj-cat-label">Reforma</span></div>
+        </div>
+
+        <!-- Panela de Fundição -->
+        <div class="proj-card" data-cat="fabricacao"
+          data-title="Confecção de Panela de Fundição"
+          data-imgs='["galeria-projetos/panela-fundicao/2155584445175613.jpeg","galeria-projetos/panela-fundicao/1717281979409421.jpeg","galeria-projetos/panela-fundicao/2481126205661022.jpeg","galeria-projetos/panela-fundicao/2858620134472640.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/panela-fundicao/2155584445175613.jpeg" alt="Confecção de panela de fundição" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 4</span>
+          </div>
+          <div class="proj-info"><h3>Confecção de Panela de Fundição</h3><span class="proj-cat-label">Fabricação</span></div>
+        </div>
+
+        <!-- Cabeços Naval -->
+        <div class="proj-card" data-cat="fabricacao"
+          data-title="Fabricação de Cabeços de Ancoragem Naval"
+          data-imgs='["galeria-projetos/cabecos-naval/1028946539507614.jpeg","galeria-projetos/cabecos-naval/27151170524532223.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/cabecos-naval/1028946539507614.jpeg" alt="Cabeços de ancoragem naval" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 2</span>
+          </div>
+          <div class="proj-info"><h3>Fabricação de Cabeços de Ancoragem Naval</h3><span class="proj-cat-label">Fabricação</span></div>
+        </div>
+
+        <!-- Sistema de filtragem de fluídos -->
+        <div class="proj-card" data-cat="fabricacao"
+          data-title="Sistema de filtragem de fluídos"
+          data-imgs='["galeria-projetos/filtro-linhas-agua/1501574648225228.jpeg","galeria-projetos/filtro-linhas-agua/835178409659928.jpeg","galeria-projetos/filtro-linhas-agua/960283616812841.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/filtro-linhas-agua/1501574648225228.jpeg" alt="Sistema de filtragem de fluídos" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 3</span>
+          </div>
+          <div class="proj-info"><h3>Sistema de filtragem de fluídos</h3><span class="proj-cat-label">Fabricação</span></div>
+        </div>
+
+        <!-- Adequação de acessos, passadiços e Guarda Corpos NR12 -->
+        <div class="proj-card" data-cat="seguranca"
+          data-title="Adequação de acessos, passadiços e Guarda Corpos — NR12 e IT08"
+          data-imgs='["galeria-projetos/guarda-corpos-nr12/1186617903556320.jpeg","galeria-projetos/guarda-corpos-nr12/971104742508819.jpeg","galeria-projetos/guarda-corpos-nr12/1776383316670551.jpeg","galeria-projetos/guarda-corpos-nr12/1005124848664295.jpeg","galeria-projetos/guarda-corpos-nr12/1272910764917760.jpeg","galeria-projetos/guarda-corpos-nr12/1596705664761344.jpeg","galeria-projetos/guarda-corpos-nr12/4541231882862600.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/guarda-corpos-nr12/1186617903556320.jpeg" alt="Adequação de acessos, passadiços e guarda corpos NR12 e IT08" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 7</span>
+          </div>
+          <div class="proj-info"><h3>Adequação de acessos, passadiços e Guarda Corpos — NR12 e IT08</h3><span class="proj-cat-label">Segurança NR</span></div>
+        </div>
+
+        <!-- Montagem Britagem -->
+        <div class="proj-card" data-cat="construcao"
+          data-title="Montagem de Unidade de Britagem de Calcário"
+          data-imgs='["galeria-projetos/montagem-britagem/1633777661075499.jpeg","galeria-projetos/montagem-britagem/984872520949539.jpeg","galeria-projetos/unidade-britagem-calcario/1270528828174495.jpeg","galeria-projetos/unidade-britagem-calcario/2426895377820963.jpeg","galeria-projetos/unidade-britagem-calcario/2539573943121647.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/montagem-britagem/1633777661075499.jpeg" alt="Montagem unidade de britagem de calcário" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 5</span>
+          </div>
+          <div class="proj-info"><h3>Montagem de Unidade de Britagem de Calcário</h3><span class="proj-cat-label">Construção</span></div>
+        </div>
+
+        <!-- Suporte Alumínio Forno -->
+        <div class="proj-card" data-cat="reforma"
+          data-title="Reforma de Suporte de Alumínio para Forno de Tratamento Térmico"
+          data-imgs='["galeria-projetos/suporte-aluminio-forno/1467527875126414.jpeg","galeria-projetos/suporte-aluminio-forno/3413322122161158.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/suporte-aluminio-forno/1467527875126414.jpeg" alt="Suporte de alumínio para forno" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 2</span>
+          </div>
+          <div class="proj-info"><h3>Reforma de Suporte de Alumínio para Forno Térmico</h3><span class="proj-cat-label">Reforma</span></div>
+        </div>
+
+        <!-- Mezanino Despoeiramento -->
+        <div class="proj-card" data-cat="construcao"
+          data-title="Construção de Mezanino — Sistema de Despoeiramento"
+          data-imgs='["galeria-projetos/mezanino-despoeiramento/2106312979929616.jpeg","galeria-projetos/mezanino-despoeiramento/1068464482179007.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/mezanino-despoeiramento/2106312979929616.jpeg" alt="Mezanino para despoeiramento com filtro de mangas" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 2</span>
+          </div>
+          <div class="proj-info"><h3>Construção de Mezanino — Sistema de Despoeiramento</h3><span class="proj-cat-label">Construção</span></div>
+        </div>
+
+        <!-- Doka Materiais Pesados -->
+        <div class="proj-card" data-cat="construcao"
+          data-title="Doka para Carregamento de Materiais Pesados"
+          data-imgs='["galeria-projetos/doka-materiais-pesados/1790670909024299.jpeg","galeria-projetos/doka-materiais-pesados/999779992509157.jpeg","galeria-projetos/doka-materiais-pesados/2097924607602426.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/doka-materiais-pesados/1790670909024299.jpeg" alt="Doka para materiais pesados" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 3</span>
+          </div>
+          <div class="proj-info"><h3>Doka para Carregamento de Materiais Pesados</h3><span class="proj-cat-label">Construção</span></div>
+        </div>
+
+        <!-- Galpão Metálico -->
+        <div class="proj-card" data-cat="construcao"
+          data-title="Construção de Galpão Metálico"
+          data-imgs='["galeria-projetos/galpao-cervejaria/1339474984836753.jpeg","galeria-projetos/galpao-cervejaria/1501004185142748.jpeg","galeria-projetos/galpao-cervejaria/1524294542480073.jpeg","galeria-projetos/galpao-cervejaria/4385727941573315.jpeg","galeria-projetos/galpao-cervejaria/4492450681027319.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/galpao-cervejaria/1339474984836753.jpeg" alt="Construção de galpão metálico" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 5</span>
+          </div>
+          <div class="proj-info"><h3>Construção de Galpão Metálico</h3><span class="proj-cat-label">Construção</span></div>
+        </div>
+
+        <!-- Flutuante para Balsas -->
+        <div class="proj-card" data-cat="construcao"
+          data-title="Construção de Flutuante para Balsas"
+          data-imgs='["galeria-projetos/flutuante-balsas/4255986054616310.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/flutuante-balsas/4255986054616310.jpeg" alt="Flutuante para balsas" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+          </div>
+          <div class="proj-info"><h3>Construção de Flutuante para Balsas</h3><span class="proj-cat-label">Construção</span></div>
+        </div>
+
+        <!-- Tubulações Filtragem -->
+        <div class="proj-card" data-cat="fabricacao"
+          data-title="Tubulações para Filtragem de Partículas Suspensas"
+          data-imgs='["galeria-projetos/tubulacoes-filtragem/1465698774797450.jpeg","galeria-projetos/tubulacoes-filtragem/1003220208829578.jpeg","galeria-projetos/tubulacoes-filtragem/1042733132266810.jpeg","galeria-projetos/tubulacoes-filtragem/1349643243685448.jpeg","galeria-projetos/tubulacoes-filtragem/2181603292639322.jpeg","galeria-projetos/tubulacoes-filtragem/2195785611173749.jpeg","galeria-projetos/tubulacoes-filtragem/27233010222960911.jpeg","galeria-projetos/tubulacoes-filtragem/3813513268789769.jpeg","galeria-projetos/tubulacoes-filtragem/3883507401945693.jpeg","galeria-projetos/tubulacoes-filtragem/sem-titulo.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/tubulacoes-filtragem/1465698774797450.jpeg" alt="Tubulações para filtragem de partículas" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 10</span>
+          </div>
+          <div class="proj-info"><h3>Tubulações para Filtragem de Partículas Suspensas</h3><span class="proj-cat-label">Fabricação</span></div>
+        </div>
+
+        <!-- Protetores Porta-pallets -->
+        <div class="proj-card" data-cat="fabricacao"
+          data-title="Fabricação de Protetores de Porta-pallets"
+          data-imgs='["galeria-projetos/protetores-porta-pallets/1673646993587370.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/protetores-porta-pallets/1673646993587370.jpeg" alt="Protetores de porta-pallets" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+          </div>
+          <div class="proj-info"><h3>Fabricação de Protetores de Porta-pallets</h3><span class="proj-cat-label">Fabricação</span></div>
+        </div>
+
+        <!-- Silos de estocagem de Calcário -->
+        <div class="proj-card" data-cat="fabricacao"
+          data-title="Fabricação e instalação de Silos de estocagem de Calcário"
+          data-imgs='["galeria-projetos/cones-silos-calcario/1880343572637080.jpeg","galeria-projetos/cones-silos-calcario/1878659876873541.jpeg","galeria-projetos/cones-silos-calcario/1005135515343857.jpeg","galeria-projetos/cones-silos-calcario/1050494900653582.jpeg","galeria-projetos/cones-silos-calcario/2107173363175494.jpeg","galeria-projetos/cones-silos-calcario/4038845399747833.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/cones-silos-calcario/1880343572637080.jpeg" alt="Fabricação e instalação de silos de estocagem de calcário" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 6</span>
+          </div>
+          <div class="proj-info"><h3>Fabricação e instalação de Silos de estocagem de Calcário</h3><span class="proj-cat-label">Fabricação</span></div>
+        </div>
+
+        <!-- Proteção Partes Móveis NR12 -->
+        <div class="proj-card" data-cat="seguranca"
+          data-title="Proteção de Partes Móveis — Atendimento NR12"
+          data-imgs='["galeria-projetos/protecao-partes-moveis/27316725041298749.jpeg","galeria-projetos/protecao-partes-moveis/1006628468443126.jpeg","galeria-projetos/protecao-partes-moveis/1277186154498173.jpeg","galeria-projetos/protecao-partes-moveis/1329335172494398.jpeg","galeria-projetos/protecao-partes-moveis/1516290679969368.jpeg","galeria-projetos/protecao-partes-moveis/1534583134993802.jpeg","galeria-projetos/protecao-partes-moveis/1534928891623059.jpeg","galeria-projetos/protecao-partes-moveis/1734707174380162.jpeg","galeria-projetos/protecao-partes-moveis/2375917329879552.jpeg","galeria-projetos/protecao-partes-moveis/991272986839392.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/protecao-partes-moveis/27316725041298749.jpeg" alt="Proteção de partes móveis NR12" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 10</span>
+          </div>
+          <div class="proj-info"><h3>Proteção de Partes Móveis — Atendimento NR12</h3><span class="proj-cat-label">Segurança NR</span></div>
+        </div>
+
+        <!-- Pórtico NR35 -->
+        <div class="proj-card" data-cat="seguranca"
+          data-title="Pórtico para Trabalhos em Altura — NR35"
+          data-imgs='["galeria-projetos/portico-nr35/1717344559445445.jpeg","galeria-projetos/portico-nr35/1513867363561647.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/portico-nr35/1717344559445445.jpeg" alt="Pórtico para trabalhos em altura NR35" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 2</span>
+          </div>
+          <div class="proj-info"><h3>Pórtico para Trabalhos em Altura — NR35</h3><span class="proj-cat-label">Segurança NR</span></div>
+        </div>
+
+        <!-- Silo Triplo — Calcário Moído com Ensacadeira -->
+        <div class="proj-card" data-cat="fabricacao"
+          data-title="Silo Triplo para Estocagem de Calcário Moído com Ensacadeira Pneumática"
+          data-imgs='["galeria-projetos/silo-triplo-calcario/1600815654319487.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/silo-triplo-calcario/1600815654319487.jpeg" alt="Silo triplo para estocagem de calcário moído com ensacadeira pneumática" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+          </div>
+          <div class="proj-info"><h3>Silo Triplo — Calcário Moído com Ensacadeira Pneumática</h3><span class="proj-cat-label">Fabricação</span></div>
+        </div>
+
+        <!-- Corte CNC Plasma e Oxicorte -->
+        <div class="proj-card" data-cat="fabricacao"
+          data-title="Corte CNC Plasma e Oxicorte"
+          data-imgs='["galeria-projetos/corte-cnc-oxicorte/973606875437955.jpeg","galeria-projetos/corte-cnc-oxicorte/986235350850199.jpeg","galeria-projetos/corte-cnc-oxicorte/1520388409484602.jpeg","galeria-projetos/corte-cnc-oxicorte/1705248667470984.jpeg","galeria-projetos/corte-cnc-oxicorte/1927852024585132.jpeg","galeria-projetos/corte-cnc-oxicorte/2227382104746150.jpeg","galeria-projetos/corte-cnc-oxicorte/2240086703195431.jpeg","galeria-projetos/corte-cnc-oxicorte/2938144403198543.jpeg"]'>
+          <div class="proj-thumb">
+            <img src="galeria-projetos/corte-cnc-oxicorte/973606875437955.jpeg" alt="Corte CNC plasma e oxicorte" loading="lazy">
+            <div class="proj-overlay"><div class="proj-overlay-ico"><i class="fas fa-expand"></i></div></div>
+            <span class="proj-count-badge"><i class="fas fa-images"></i> 8</span>
+          </div>
+          <div class="proj-info"><h3>Corte CNC Plasma e Oxicorte</h3><span class="proj-cat-label">Fabricação</span></div>
+        </div>
+
+
+
+      </div><!-- /portfolio-grid -->
     </div>
   </section>
+
+  <!-- ═══ LIGHTBOX ════════════════════════════════════════════ -->
+  <div class="lb-overlay" id="lbOverlay" role="dialog" aria-modal="true" aria-label="Visualizador de imagens">
+    <button class="lb-close" id="lbClose" aria-label="Fechar"><i class="fas fa-times"></i></button>
+    <div class="lb-wrap">
+      <div class="lb-img-wrap" id="lbImgWrap">
+        <div class="lb-loader"></div>
+        <img id="lbImg" src="" alt="">
+      </div>
+      <div class="lb-info">
+        <span class="lb-title" id="lbTitle"></span>
+        <span class="lb-counter" id="lbCounter"></span>
+      </div>
+    </div>
+  </div>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Próxima"><i class="fas fa-chevron-right"></i></button>
 
   <!-- ═══ CAPACIDADE TÉCNICA ═════════════════════════════════ -->
   <section id="capacidade" class="section-pad" aria-labelledby="cap-titulo">
@@ -1818,7 +2299,7 @@
             <div class="info-ico" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></div>
             <div>
               <h3>Endereço</h3>
-              <p>Av. Min. Gabriel Passos, 92<br>Centro – Santa Cruz de Minas, MG<br>CEP 36328-000</p>
+              <p>Travessa Ministro Gabriel Passos, 92<br>Centro – Santa Cruz de Minas, MG<br>CEP 36328-000</p>
             </div>
           </div>
 
@@ -1938,7 +2419,7 @@
           <div class="footer-title">Contato</div>
           <div class="footer-contact-item">
             <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-            <span>Av. Min. Gabriel Passos, 92, Centro – Santa Cruz de Minas, MG</span>
+            <span>Travessa Ministro Gabriel Passos, 92, Centro – Santa Cruz de Minas, MG</span>
           </div>
           <div class="footer-contact-item">
             <i class="fas fa-phone" aria-hidden="true"></i>
@@ -2145,6 +2626,123 @@
       buildDots();
       moveTo(N, false); // posiciona no primeiro slide real sem animação
       start();
+    })();
+
+    // ─── PORTFÓLIO: filtros ────────────────────────────────
+    (function () {
+      const btns  = document.querySelectorAll('.filtro-btn');
+      const cards = document.querySelectorAll('.proj-card');
+
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const cat = btn.dataset.cat;
+          cards.forEach(card => {
+            const show = cat === 'todos' || card.dataset.cat === cat;
+            card.classList.toggle('hidden', !show);
+          });
+        });
+      });
+    })();
+
+    // ─── LIGHTBOX ─────────────────────────────────────────
+    (function () {
+      const overlay  = document.getElementById('lbOverlay');
+      const lbImg    = document.getElementById('lbImg');
+      const lbImgWrap= document.getElementById('lbImgWrap');
+      const lbTitle  = document.getElementById('lbTitle');
+      const lbCtr    = document.getElementById('lbCounter');
+      const lbClose  = document.getElementById('lbClose');
+      const lbPrev   = document.getElementById('lbPrev');
+      const lbNext   = document.getElementById('lbNext');
+
+      let imgs = [];
+      let idx  = 0;
+
+      var preloadCache = {};
+      function preloadSrc(src) {
+        if (src && !preloadCache[src]) {
+          var pre = new Image();
+          pre.src = src;
+          preloadCache[src] = pre;
+        }
+      }
+
+      function show(i) {
+        idx = i;
+        lbCtr.textContent = (idx + 1) + ' / ' + imgs.length;
+        lbPrev.disabled = idx === 0;
+        lbNext.disabled = idx === imgs.length - 1;
+
+        if (preloadCache[imgs[idx]] && preloadCache[imgs[idx]].complete) {
+          lbImgWrap.classList.remove('loading');
+          lbImg.src = imgs[idx];
+        } else {
+          lbImgWrap.classList.add('loading');
+          lbImg.src = imgs[idx];
+          lbImg.onload  = () => lbImgWrap.classList.remove('loading');
+          lbImg.onerror = () => lbImgWrap.classList.remove('loading');
+        }
+        lbImg.alt = lbTitle.textContent;
+        if (imgs[idx + 1]) preloadSrc(imgs[idx + 1]);
+        if (imgs[idx - 1]) preloadSrc(imgs[idx - 1]);
+      }
+
+      function open(card) {
+        imgs  = JSON.parse(card.dataset.imgs);
+        lbTitle.textContent = card.dataset.title;
+        show(0);
+        overlay.classList.add('open');
+        lbPrev.classList.add('lb-visible');
+        lbNext.classList.add('lb-visible');
+        document.body.style.overflow = 'hidden';
+        lbClose.focus();
+      }
+
+      function close() {
+        overlay.classList.remove('open');
+        lbPrev.classList.remove('lb-visible');
+        lbNext.classList.remove('lb-visible');
+        document.body.style.overflow = '';
+        lbImg.src = '';
+      }
+
+      document.querySelectorAll('.proj-card').forEach(card => {
+        function preloadCard() {
+          try { JSON.parse(card.dataset.imgs).forEach(preloadSrc); } catch(e) {}
+        }
+        card.addEventListener('mouseenter', preloadCard);
+        card.addEventListener('touchstart', preloadCard, { passive: true });
+        card.addEventListener('click', () => open(card));
+        card.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(card); }
+        });
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+      });
+
+      lbClose.addEventListener('click', close);
+      overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+      lbPrev.addEventListener('click', () => { if (idx > 0) show(idx - 1); });
+      lbNext.addEventListener('click', () => { if (idx < imgs.length - 1) show(idx + 1); });
+
+      document.addEventListener('keydown', e => {
+        if (!overlay.classList.contains('open')) return;
+        if (e.key === 'Escape')      close();
+        if (e.key === 'ArrowLeft'  && idx > 0)              show(idx - 1);
+        if (e.key === 'ArrowRight' && idx < imgs.length - 1) show(idx + 1);
+      });
+
+      // swipe touch
+      let tx = 0;
+      overlay.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+      overlay.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - tx;
+        if (Math.abs(dx) < 40) return;
+        if (dx < 0 && idx < imgs.length - 1) show(idx + 1);
+        if (dx > 0 && idx > 0)              show(idx - 1);
+      });
     })();
   </script>
 </body>
